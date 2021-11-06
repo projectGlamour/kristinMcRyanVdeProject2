@@ -306,12 +306,15 @@ html, body {
 
 footer {
   width: 100%;
-  position: absolute;
-  bottom: 0;
+}
+
+.creditsP {
+  color: white;
+  margin: 0;
 }
 
 .credits {
-  background-color: #363636;
+  background-color: #2c2c2c;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -324,9 +327,4 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.creditsP {
-  color: white;
-  margin: 0;
 }
