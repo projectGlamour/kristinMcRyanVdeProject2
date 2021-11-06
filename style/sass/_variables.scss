@@ -1,0 +1,11 @@
+$color-primary: blue;
+$color-secondary: lightblue; 
+$color-black: black; 
+$color-white: white;
+
+
+@mixin Maxsize100 {
+    width: 100%; 
+    height: 100%; 
+
+}
