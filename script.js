@@ -10,22 +10,144 @@
 
 const app = {};
 
+app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
+
 
 app.getProductType = () => {
-  // get <li className="type"></li>
-  const typeLi = document.querySelector('.sideMenu');
-  console.log(typeLi);
-  // listen for user's selection of li
-  typeLi.addEventListener('click', function(e){
-    console.log('clicked');
-  });
+  // get all product buttons
+  const buttonList = document.querySelectorAll("button[id^=product");
+  console.log(buttonList);
+  // loop through nodelist of buttons
+  buttonList.forEach(buttonItem => {
+    // add event listener to each button
+    buttonItem.addEventListener("click", function(event){
+      // save id of clicked button in variable
+      app.productTypeSelected = event.target.id;
+      console.log(app.productTypeSelected);
+
+      //go to product page
+      window.location.href="product.html";
+      console.log(app.productTypeSelected);
+    })
+  })
+}
+
+
+app.formFilter = () => {
+  //get form element
+  const formElement = document.querySelector("form");
+  const submitButtonElement = document.querySelector("button[type=submit]");
+  console.log(formElement, submitButtonElement);
+
+  //add event listener to submit button
+  submitButtonElement.addEventListener("click", function(event){
+    event.preventDefault();
+  
+    // get selected brand
+    const brandOption = formElement[0].selectedIndex;
+    //check if brand selected
+    if (brandOption !== 0){
+      // save value of selected brand in variable
+      app.brandSelected = formElement[0][brandOption].value;
+      console.log(app.brandSelected);
+    }else {
+      // assign empty string if no brand selected
+      app.brandSelected = '';
+    }
+
+    //  get selected price range
+    const priceOption = formElement[1].selectedIndex;
+    //  check which price was selected
+    if (priceOption === 1){
+      // least expensive was selected
+      // assign values for price range
+      app.priceLessThan = 25;
+      app.priceGreaterThan = 0;
+    }else if (priceOption === 2){
+      // most expensive was selected
+      // assign values for price range
+      app.priceGreaterThan = 25;
+      app.priceLessThan = 1000;
+    }else {
+      //assign general range to variables
+      app.priceGreaterThan = 0;
+      app.priceLessThan = 1000;
+    }
+
+    // get rating selection
+    const ratingSelecton = formElement[2].selectedIndex;
+    // check rating selected
+    if (ratingSelecton === 1){
+      // two stars was selected
+      app.ratingGreaterThan = 1;
+      app.ratingLessThan = 3;
+    }else if (ratingSelecton === 2){
+      // three stars was selected
+      app.ratingGreaterThan = 2;
+      app.ratingLessThan = 4;
+    }else if (ratingSelecton === 3){
+      // four stars was selected
+      app.ratingGreaterThan = 3;
+      app.ratingLessThan = 10;
+    }else{
+      // no rating was selected
+      app.ratingGreaterThan = 0;
+      app.ratingLessThan = 10;
+    }
+
+    console.log(app.brandSelected, app.ratingGreaterThan, app.ratingLessThan, app.priceGreaterThan, app.priceLessThan);
+
+    // call API
+    app.getResults();
+  })
+}
+
+app.getResults = () => {
+  const url = new URL(app.apiUrl);
+  url.search = new URLSearchParams({
+    // pass in variables from form
+    product_type: 'lipstick',
+    brand: 'dior',
+    price_greater_than: app.priceGreaterThan,
+    price_less_than: app.priceLessThan,
+    rating_greater_than: app.ratingGreaterThan,
+    rating_less_than: app.ratingLessThan
+  })
+
+  // pass new url into fetch
+  fetch(url)
+  .then((response) => {
+    // get response from API and return it
+    return response.json();
+  })
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  })
+  }
+
+
+//  ** NOT working yet
+app.loadProductPage = () => {
+  // change the header to include the product type
+  app.loadProductPageTitle();
+
+}
+//  ** NOT working yet
+app.loadProductPageTitle = () => {
+  // get h2 on product page
+  const spanElement = document.querySelector('span');
+  // const h2Element = document.querySelector('h2');
+  console.log(spanElement);
+  spanElement.textContent = app.productTypeSelected;
 }
 
 
 
 app.init = () => {
   // 
-  app.getProductType();
+  app.formFilter();
+
+  // app.getProductType();
 }
 
 
