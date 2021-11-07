@@ -27,16 +27,21 @@ app.getProductType = () => {
     // add event listener to each button
     buttonItem.addEventListener("click", function(event){
       // save id of clicked button in variable
-      app.productTypeSelected = event.target.id;
-      console.log(app.productTypeSelected);
-
+      app.productTypeSelected = event.target.value;
+      productItemValueSentOver = event.target.value; 
       //go to product page
       // window.location.href="product.html";
       console.log(app.productTypeSelected);
+
+      valueSent();
     })
   })
 }
 
+function valueSent() {
+  localStorage.setItem("ProductValueSentFromHome", productItemValueSentOver);
+  window.location.href = "product.html"; 
+}
 
 // app.formFilter = () => {
 //   //get form element

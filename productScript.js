@@ -2,7 +2,8 @@ const app = {};
 
 app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
 
-
+let receivedValue = localStorage.getItem("ProductValueSentFromHome");
+alert("the value is" + receivedValue); 
 app.brandSelected = ""; // variable for the user's brand selection
 app.priceLessThan = 1000; // variable for user's price selection
 app.priceGreaterThan = 0; // variable for user's price selection
