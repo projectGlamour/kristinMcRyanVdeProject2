@@ -146,7 +146,7 @@ app.loadProductPageTitle = () => {
 
 app.init = () => {
   // 
-  app.formFilter();
+  // app.formFilter();
 
   app.getProductType();
 }
