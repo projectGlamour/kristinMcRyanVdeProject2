@@ -3,6 +3,12 @@ const app = {};
 app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
 
 
+app.brandSelected = ""; // variable for the user's brand selection
+app.priceLessThan = 1000; // variable for user's price selection
+app.priceGreaterThan = 0; // variable for user's price selection
+
+
+// method to get form element, listen for form submission and assign variables based on user's selections
 app.formFilter = () => {
   //get form element
   const formElement = document.querySelector("form");
@@ -19,10 +25,6 @@ app.formFilter = () => {
     if (brandOption !== 0){
       // save value of selected brand in variable
       app.brandSelected = formElement[0][brandOption].value;
-      console.log(app.brandSelected);
-    }else {
-      // assign empty string if no brand selected
-      app.brandSelected = '';
     }
 
     //  get selected price range
@@ -31,43 +33,23 @@ app.formFilter = () => {
     if (priceOption === 1){
       // least expensive was selected
       // assign values for price range
-      app.priceLessThan = 25;
+      app.priceLessThan = 20;
       app.priceGreaterThan = 0;
     }else if (priceOption === 2){
       // most expensive was selected
       // assign values for price range
-      app.priceGreaterThan = 25;
+      app.priceGreaterThan = 20;
       app.priceLessThan = 1000;
-    }else {
-      app.priceLessThan = 1000;
-      app.priceGreaterThan = 0;
     }
 
-    // get rating selection
-    const ratingSelecton = formElement[2].selectedIndex;
-    // check rating selected
-    if (ratingSelecton === 1){
-      // two stars was selected
-      app.ratingGreaterThan = 1;
-      app.ratingLessThan = 3;
-    }else if (ratingSelecton === 2){
-      // three stars was selected
-      app.ratingGreaterThan = 2;
-      app.ratingLessThan = 4;
-    }else if (ratingSelecton === 3){
-      // four stars was selected
-      app.ratingGreaterThan = 3;
-      app.ratingLessThan = 10;
-    }
-
-    console.log(app.brandSelected, app.ratingGreaterThan, app.ratingLessThan, app.priceGreaterThan, app.priceLessThan);
+    console.log(app.brandSelected, app.priceGreaterThan, app.priceLessThan);
 
     // call API
     app.getResults();
   })
-} 
+} // end of app.formFilter
 
-
+// method to take variables with user's selections and send to API
 app.getResults = () => {
   const url = new URL(app.apiUrl);
   url.search = new URLSearchParams({
@@ -76,8 +58,7 @@ app.getResults = () => {
     brand: app.brandSelected,
     price_greater_than: app.priceGreaterThan,
     price_less_than: app.priceLessThan,
-    // rating_greater_than: app.ratingGreaterThan,
-    // rating_less_than: app.ratingLessThan
+
   })
 
   // pass new url into fetch
@@ -88,8 +69,36 @@ app.getResults = () => {
   })
   .then((jsonResponse) => {
     console.log(jsonResponse);
+    app.displayImages(jsonResponse);
   })
-  }
+  } // end of app.getResults
+
+// method to take results from API call and display them on the product page
+app.displayImages = (arrayData) => {
+  // find the images ul and assign to variable
+  const imagesUl = document.querySelector("ul.images");
+
+  // take the data from the API and iterate through it
+  arrayData.forEach((item) => {
+    // create a list item element
+    const li = document.createElement('li');
+
+    // create an image item
+    const img = document.createElement('img');
+
+    // add the content we need to the image element
+    img.src = item.api_featured_image;
+    img.width = "300";
+    img.alt = item.description;
+    
+     // append the img element to the list item
+    li.appendChild(img);
+
+    // append the li to the gallery ul
+    imagesUl.appendChild(li);
+  })
+
+}// end of display images
 
 
 
