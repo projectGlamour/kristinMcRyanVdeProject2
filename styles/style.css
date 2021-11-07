@@ -361,7 +361,7 @@ footer {
   display: -ms-flexbox;
   display: flex;
   padding: 0 0;
-  outline: solid green 2px;
+  outline: solid white 2px;
   width: 50%;
 }
 
