@@ -7,14 +7,17 @@
   <title>Project 2 - Imperial Glamour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="./style/styles.css">
+  <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-  <header>
-    <h2>Imperial Glamour Products</h2>
-    <h3>Product Name</h3>
+  <header class="productPage">
+    <div class="productTitleContainer">
+      <!-- this will change with the product that the user picks -->
+      <h2>Imperial Glamour Products<span></span></h2>
+    </div>
+   
   </header>
-  <main>
+  <main class="productMain">
     <!-- nav -->
     <nav class="product" id="productNav">
       <ul>
@@ -26,20 +29,36 @@
     </nav>
     <!-- form with filter options  -->
     <form class="productFilter">
-      <!-- popular -->
-      <input type="checkbox" id="popular">
-      <label for="popular">Most Popular</label>
-      <!-- price -->
-      <input type="radio" name= "price" id="lowPrice">
-      <label for="lowPrice">Least Expensive</label>
-      <input type="radio" name="price" id="highPrice">
-      <label for="highPrice">Most Expensive</label>
       <!-- brand -->
       <select name="brand" id="brand">
-        <option value="">Choose one:</option>
+        <option value="">Brand: </option>
         <option value="">Brand 1</option>
         <option value="">Brand 2</option>
       </select>
+      <!-- popular -->
+
+      <!-- <fieldset>
+        <input type="checkbox" id="popular">
+        <label for="popular">Most Popular</label>
+      </fieldset> -->
+      <!-- price -->
+      <select name="" id="">
+        <option value="">Price:</option>
+        <option value="">
+          Least Expensive
+        </option>
+        <option value="">
+          Most Expensive
+        </option>
+      </select>
+      <!-- rating -->
+      <select name="" id="">
+        <option value="">Rating:</option>
+        <option value="">***</option>
+        <option value="">***</option>
+        <option value="">****</option>
+      </select>
+    
       <!-- form submit button -->
       <button type="submit">Submit</button>
       </form>

@@ -1,0 +1,44 @@
+.productPage{
+  background-color:darkblue;
+  height: 10vh;
+  width: 100%;
+}
+.productTitleContainer {
+  @include Maxsize100;
+  display: flex;
+  justify-content: center;
+  h2 {
+    color: white;
+    margin: 0;
+    align-self: center;
+  }
+} 
+
+main.productMain{
+  position: relative;
+}
+nav.product{
+  position: relative;
+
+  width: 100%;
+  ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%;
+    padding: 0;
+    outline: solid green 2px;
+    li{
+      a{
+        text-decoration: none;
+        color: $colorBlack;
+      }
+    }
+  }
+}
+form{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100%;
+  
+}
