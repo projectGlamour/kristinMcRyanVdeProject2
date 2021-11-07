@@ -12,6 +12,11 @@ const app = {};
 
 app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
 
+// app.priceGreaterThan = null;
+// app.priceLessThan = null;
+// app.ratingGreaterThan = null;
+// app.ratingLessThan = null;
+
 
 app.getProductType = () => {
   // get all product buttons
@@ -26,7 +31,7 @@ app.getProductType = () => {
       console.log(app.productTypeSelected);
 
       //go to product page
-      window.location.href="product.html";
+      // window.location.href="product.html";
       console.log(app.productTypeSelected);
     })
   })
@@ -69,9 +74,8 @@ app.formFilter = () => {
       app.priceGreaterThan = 25;
       app.priceLessThan = 1000;
     }else {
-      //assign general range to variables
-      app.priceGreaterThan = 0;
       app.priceLessThan = 1000;
+      app.priceGreaterThan = 0;
     }
 
     // get rating selection
@@ -89,10 +93,6 @@ app.formFilter = () => {
       // four stars was selected
       app.ratingGreaterThan = 3;
       app.ratingLessThan = 10;
-    }else{
-      // no rating was selected
-      app.ratingGreaterThan = 0;
-      app.ratingLessThan = 10;
     }
 
     console.log(app.brandSelected, app.ratingGreaterThan, app.ratingLessThan, app.priceGreaterThan, app.priceLessThan);
@@ -100,18 +100,19 @@ app.formFilter = () => {
     // call API
     app.getResults();
   })
-}
+} 
+
 
 app.getResults = () => {
   const url = new URL(app.apiUrl);
   url.search = new URLSearchParams({
     // pass in variables from form
     product_type: 'lipstick',
-    brand: 'dior',
+    brand: app.brandSelected,
     price_greater_than: app.priceGreaterThan,
     price_less_than: app.priceLessThan,
-    rating_greater_than: app.ratingGreaterThan,
-    rating_less_than: app.ratingLessThan
+    // rating_greater_than: app.ratingGreaterThan,
+    // rating_less_than: app.ratingLessThan
   })
 
   // pass new url into fetch
@@ -147,7 +148,7 @@ app.init = () => {
   // 
   app.formFilter();
 
-  // app.getProductType();
+  app.getProductType();
 }
 
 
