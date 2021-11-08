@@ -80,13 +80,13 @@ app.formFilter = () => {
 } // end of app.formFilter
 
 function removeimages (){
-  var list = document.getElementById("images");   // Get the <ul> element with id="myList"
+  let list = document.getElementById("images");   // Get the <ul> element with id="myList"
   list.remove();
 
   const NewUl = document.getElementById("imageGallery");
   const uniUL = document.createElement("ul");
-  uniUL.setAttribute("class", "images")
-
+  uniUL.setAttribute("id", "images");
+  uniUL.setAttribute("class", "images");
   NewUl.appendChild(uniUL);
 
 
