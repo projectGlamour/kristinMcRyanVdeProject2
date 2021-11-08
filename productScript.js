@@ -1,9 +1,13 @@
+const receivedValue = localStorage.getItem("ProductValueSentFromHome");
+alert("the value is" + receivedValue); 
+
+// namespacing starts
 const app = {};
 
+
+// variable list - namespace - starts
 app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
 
-let receivedValue = localStorage.getItem("ProductValueSentFromHome");
-alert("the value is" + receivedValue); 
 app.brandSelected = ""; // variable for the user's brand selection
 app.priceLessThan = 1000; // variable for user's price selection
 app.priceGreaterThan = 0; // variable for user's price selection
@@ -23,14 +27,16 @@ app.formFilter = () => {
     // get selected brand
     const brandOption = formElement[0].selectedIndex;
     //check if brand selected
+    // if no user input option = 0
     if (brandOption !== 0){
       // save value of selected brand in variable
       app.brandSelected = formElement[0][brandOption].value;
     }
 
-    //  get selected price range
+    //  get selected price range selected by user
     const priceOption = formElement[1].selectedIndex;
     //  check which price was selected
+    // if no user selection = 0
     if (priceOption === 1){
       // least expensive was selected
       // assign values for price range
@@ -70,6 +76,7 @@ app.getResults = () => {
   })
   .then((jsonResponse) => {
     console.log(jsonResponse);
+    // call function to display images
     app.displayImages(jsonResponse);
   })
   } // end of app.getResults
