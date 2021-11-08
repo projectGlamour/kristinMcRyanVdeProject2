@@ -1,8 +1,21 @@
+// general styles
+.wrapper {
+  max-width: 1280px;
+  width: 80%;
+  margin: 0 auto;
+}
+img {
+  width: 100%;
+  display: block;
+}
+
+//header styles
 .productPage{
   background-color:darkblue;
   height: 10vh;
   width: 100%;
 }
+
 .productTitleContainer {
   @include Maxsize100;
   display: flex;
@@ -14,12 +27,13 @@
   }
 } 
 
+// main styles
 main.productMain{
   position: relative;
 }
+//nav styles
 nav.product{
   position: relative;
-
   width: 100%;
   ul{
     list-style: none;
@@ -27,6 +41,7 @@ nav.product{
     justify-content: space-evenly;
     width: 75%;
     padding: 0;
+    margin-left: auto;
     outline: solid green 2px;
     li{
       a{
@@ -36,9 +51,33 @@ nav.product{
     }
   }
 }
+
+// form styles
 form{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;
+  gap: 2%;
+  // custom style the select elements
+  .selectStyle {
+      position: relative;
+  font-family: Arial;
+   background-color: DodgerBlue;
+  }
   
 }
+
+// imageGallery styles
+.imageGallery {
+  display: flex;
+  
+  ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 2%;
+    align-items: center;
+  }
+}
+
