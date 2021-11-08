@@ -11,7 +11,7 @@
 </head>
 <body>
   <header class="productPage">
-    <div class="productTitleContainer">
+    <div class="productTitleContainer" id = "productTitleContainer">
       <!-- this will change with the product that the user picks -->
       <h2>Imperial Glamour Products<span></span></h2>
     </div>
@@ -49,9 +49,10 @@
 
      <!-- category -->
       <select name="" id="">
-
-
-
+        <option value = "">Product Category</option>
+        <option value = "">Lipstick</option>
+        <option value = "">Lip Gloss</option>
+        <option value = "">Lip Stain</option>
       </select>
 
       <!-- form submit button -->
@@ -60,11 +61,12 @@
 
 
     <!-- section of images -->
-    <section class = "imageGallery">
-    <ul class="images">
+    <section class = "imageGallery" id = "imageGallery">
+    <ul class="images" id = "images">
       <!-- images from API call will be insereted here -->
     
     </ul>
+    <button onclick="removeimages();">Remove List</button>
     </section>
   </main>
 

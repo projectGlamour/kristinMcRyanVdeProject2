@@ -1,35 +1,35 @@
 .home {
-    width: 100%; 
-    display: flex;
-    justify-content: flex-end;
-    outline: solid gold 2px; 
-    margin-top: 1%; 
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  outline: solid gold 2px;
+  background-color: #aaaaf8;
+  color: white;
 }
 
 .home ul {
-    list-style-type: none; 
-    justify-content: space-evenly;
-    flex-direction: row;
-    display: flex; 
-    padding: 0 0; 
-    outline: solid green 2px;
-    width: 50%; 
-
+  list-style-type: none;
+  justify-content: space-evenly;
+  flex-direction: row;
+  display: flex;
+  padding: 0 0;
+  outline: solid green 2px;
+  width: 50%;
 }
 
 .home ul a {
-    text-decoration: none;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-shadow: black 1px 1px;
-    font-size: $fontSmall;
-    color: $colorBlack; 
-    transition: all 0.15s ease-in-out; 
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: black 1px 1px;
+  color: white;
+  font-size: $fontSmall;
+  color: $colorBlack;
+  transition: all 0.15s ease-in-out;
 }
 
 @media only screen and (max-width: 900px) {
-
-    .home ul {
-        width: 100%; 
-    }
+  .home ul {
+    width: 100%;
+  }
 }
