@@ -1,47 +1,47 @@
-
 .wrapperMain {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%; 
-    margin: 0; 
-    position: relative; 
-    height: 100vh; 
-
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  height: 100vh;
+  z-index: 990;
 }
 
 .homePageTitleContainer {
-    width: 100%; 
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    font-size: $fontLarge;
-}
-
-.sideMenu{
-    display: flex; 
-    flex-direction: column;
-    list-style-type: none;
-    border: solid black 2px;
-    position: absolute;
-    top: 20%; 
-    right: 5%; 
-
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-size: $fontLarge;
+  z-index: 999;
 }
 
 .sideMenu {
-    padding: 0 0; 
-    height: 50vh;  
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  border: solid black 2px;
+  position: absolute;
+  top: 20%;
+  right: 5%;
 }
 
-.sideMenu ul li { 
-    border: solid black 2px; 
-}
-.homeBackground { 
-
-    width: 100%;
-    height: 100%; 
-    background-color: midnightblue; 
+.sideMenu {
+  padding: 0 0;
+  height: 50vh;
 }
 
+.sideMenu ul li {
+  border: solid black 2px;
+}
+.homeBackground {
+  width: 100%;
+  height: 100%;
+}
+canvas {
+  background-color: rgb(4, 4, 48);
+  z-index: -1;
+  position: absolute;
+}

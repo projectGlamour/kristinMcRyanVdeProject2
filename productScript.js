@@ -1,13 +1,16 @@
 const receivedValue = localStorage.getItem("ProductValueSentFromHome");
-alert("the value is" + receivedValue); 
 
 // namespacing starts
 const app = {};
 
 
+document.getElementById('productTitleContainer').innerHTML = "<h2>" + "Imperial Glamour Products " + receivedValue + "</h2>";
+
+
+
 // variable list - namespace - starts
 app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
-
+let productCategoryOption = ""; 
 app.brandSelected = ""; // variable for the user's brand selection
 app.priceLessThan = 1000; // variable for user's price selection
 app.priceGreaterThan = 0; // variable for user's price selection
@@ -23,7 +26,7 @@ app.formFilter = () => {
   //add event listener to submit button
   submitButtonElement.addEventListener("click", function(event){
     event.preventDefault();
-  
+    
     // get selected brand
     const brandOption = formElement[0].selectedIndex;
     //check if brand selected
@@ -49,19 +52,53 @@ app.formFilter = () => {
       app.priceLessThan = 1000;
     }
 
+
+
+    const productCategory = formElement[2].selectedIndex;
+    
+    if (productCategory === 1) {
+      app.productCategoryOption = "lipstick"; 
+
+    }
+    else if (productCategory === 2) {
+
+      app.productCategoryOption = "lip_gloss"; 
+
+    }
+
+    else if (productCategory === 3) {
+      app.productCategoryOption = "lip_stain";
+    }
+
     console.log(app.brandSelected, app.priceGreaterThan, app.priceLessThan);
 
     // call API
+
+   
     app.getResults();
   })
 } // end of app.formFilter
 
+function removeimages (){
+  var list = document.getElementById("images");   // Get the <ul> element with id="myList"
+  list.remove();
+
+  const NewUl = document.getElementById("imageGallery");
+  const uniUL = document.createElement("ul");
+  uniUL.setAttribute("class", "images")
+
+  NewUl.appendChild(uniUL);
+
+
+
+  
+}
 // method to take variables with user's selections and send to API
 app.getResults = () => {
   const url = new URL(app.apiUrl);
   url.search = new URLSearchParams({
     // pass in variables from form
-    product_type: 'lipstick',
+    product_category: app.productCategoryOption,
     brand: app.brandSelected,
     price_greater_than: app.priceGreaterThan,
     price_less_than: app.priceLessThan,
@@ -96,7 +133,8 @@ app.displayImages = (arrayData) => {
 
     // add the content we need to the image element
     img.src = item.api_featured_image;
-    img.width = "300";
+    img.width = "350";
+    img.height = "350"; 
     img.alt = item.description;
     
      // append the img element to the list item
