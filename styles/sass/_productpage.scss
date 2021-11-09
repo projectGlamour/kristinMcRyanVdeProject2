@@ -19,11 +19,6 @@ img {
   @include Maxsize100;
   display: flex;
   justify-content: center;
-  h2 {
-    color: white;
-    margin: 0;
-    align-self: center;
-  }
 }
 
 main.productMain {

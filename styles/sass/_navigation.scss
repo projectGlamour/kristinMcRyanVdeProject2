@@ -1,31 +1,80 @@
 .home {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-  outline: solid gold 2px;
-  background-color: #aaaaf8;
+  justify-content: space-between;
+  background-color: #171717;
   color: white;
+  height: 60px;
+  padding: 0 0;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0) 80%,
+      rgba(0, 0, 0, 1)
+    ),
+    linear-gradient(
+      45deg,
+      black 25%,
+      transparent 25%,
+      transparent 75%,
+      black 75%,
+      black
+    ),
+    linear-gradient(
+      45deg,
+      black 25%,
+      transparent 25%,
+      transparent 75%,
+      black 75%,
+      black
+    ),
+    linear-gradient(to bottom, rgb(8, 8, 8), rgb(32, 32, 32));
+  background-size: 100% 100%, 10px 10px, 10px 10px, 10px 5px;
+  background-position: 0px 0px, 0px 0px, 5px 5px, 0px 0px;
+  border-bottom: solid black 2px;
 }
-
+//poop
 .home ul {
   list-style-type: none;
   justify-content: space-evenly;
   flex-direction: row;
   display: flex;
   padding: 0 0;
-  outline: solid green 2px;
   width: 50%;
+  margin: 0 0;
+  align-content: center;
+}
+
+.home li {
+  border: solid gold 2px;
+  padding: 10px 10px;
+  height: 45px;
+  align-self: center;
+  width: 143px;
+  text-align: center;
+  align-self: center;
+  align-content: center;
+  border-radius: 25px;
+  color: white;
+  background-color: #171717;
 }
 
 .home ul a {
   text-decoration: none;
   letter-spacing: 1px;
   text-transform: uppercase;
+  display: flex;
+  justify-content: center;
   text-shadow: black 1px 1px;
   color: white;
   font-size: $fontSmall;
-  color: $colorBlack;
   transition: all 0.15s ease-in-out;
+}
+.home li:hover {
+  background-color: rgb(116, 114, 114);
+
+  transition: all 0.35s ease-in-out;
 }
 
 @media only screen and (max-width: 900px) {

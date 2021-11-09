@@ -6,12 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project 2 - Imperial Glamour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
   <header>
       <nav class="home" id = "homeNav">
+        <div class="theme-toggle">
+          <label class="custom-radio-button">
+            <input id="first" name="toggle-state" type="radio" checked />
+            <span class="checkmark"></span>
+          </label>
+      
+          <label class="custom-radio-button">
+            <input id="second" name="toggle-state" type="radio" />
+            <span class="checkmark"></span>
+          </label>
+        
+          <label class="custom-radio-button">
+            <input id="third" name="toggle-state" type="radio" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
         <ul>
           <li><a href="">About</a></li>
           <li><a href="index.html">Home</a></li>
@@ -21,26 +38,40 @@
       </nav>
   </header>
     <main>
-      <Canvas>
+      <Canvas id = "canvashome">
       </Canvas>
-      <div class = "homeBackground">
+      <div class = "homeBackground" id = "homeBackground">
         <div class = "wrapperMain">
-          <div class = "homePageTitleContainer"><h1>Imperial Glamour</h1></div>
+          <div class = "homePageTitleContainer"><h1>Imperial Glamour</h1><h2>Beauty Since Antiquity</h2></div>
           <div class="sideMenu">
-            <button class="type" id="product1" value = "Project HeadWay">Project Awesome</button>
-            <button class="type" id="product2">Product 2</button>
-            <button class="type" id="product3">Product 3</button>
-            <button class="type" id="product4">Product 4</button>
+            <button class="type" name = "Lipstick" id="product1" value = "Lipstick">Lipstick</button>
+            <button class="type" name = "Blush" id="product2" value = "Blush">Blush</button>
+            <button class="type" name = "Bronzer" id="product3" value = "Bronzer">Bronzer</button>
+            <button class="type" name = "Eyeliner" id="product4" value = "Eyeliner">Eyeliner</button>
+            <button class="type" name = "Eyeshadow" id="product2" value = "Eyeshadow">Eyeshadow</button>
+            <button class="type" name = "Foundation" id="product3" value = "Foundation">Foundation</button>
+            <button class="type" name = "Lipliner" id="product4" value = "Lipliner">Lipliner</button>
           </div>
         </div>
       </div>
+      <section class = "aboutIntroduction">
+        <div class = "wrapperMain">
+          <div class = "aboutParaContent">
+            <h2>About my Ass</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt blanditiis perspiciatis, commodi ea ullam nobis, a, adipisci enim optio obcaecati deleniti totam modi minima aut exercitationem unde alias aliquid nihil! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem inventore quo ducimus asperiores aliquam similique cum quaerat veniam, obcaecati, nihil ratione laudantium sed quam aliquid fugit facilis. Aliquam, vero suscipit.</p>
+          </div>
+          <div class="aboutproductimg">
+            <img src="https://via.placeholder.com/300.png/09f/fff">
+          </div>
+        </div>
+      </section>
     <main>
     <footer>
       <div class = "credits">
         <p class = "creditsP">Copyright &copy; Juno College of Technology</p>  
       </div>        
     </footer>
-  <!-- attaching JS script file -->
+  <!-- attaching JSpoop script file -->
   <script src="script.js"></script>
   <script src="canvas.js"></script>
 </body>
