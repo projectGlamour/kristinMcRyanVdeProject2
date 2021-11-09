@@ -58,13 +58,9 @@ function init() {
       let radius = 4 * Math.random();
       let color = colors[Math.floor(Math.random() * colors.length)]
       particles.push(new Particle(x, y, radius, color))
-
-      if (darkmode > 1) {
-        let color = colors1[Math.floor(Math.random() * colors1.length)]
-        let radius = 19 * Math.random();
-        particles.push(new Particle(x, y, radius, color))
-        
-      }
+      darkmode++;
+      
+      
       
   }
   
@@ -89,11 +85,12 @@ function animate() {
 init()
 animate()
 
+
+
 mouseTarget.addEventListener('mouseenter', () => {
   canvas.style.backgroundColor = "black";
   darkmode++;
 })
-
 
 mouseTarget.addEventListener('mouseleave', () => {
   canvas.style.backgroundColor = "darkgrey";
