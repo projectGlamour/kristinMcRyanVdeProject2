@@ -43,6 +43,14 @@ function valueSent() {
   window.location.href = "product.html"; 
 }
 
+const darkModeOnBttn = document.querySelector("input");
+let htmlElement = document.documentElement;
+
+darkModeOnBttn.addEventListener("click", function () {
+    
+  canvas.style.backgroundColor = "purple";
+ 
+});
 // app.formFilter = () => {
 //   //get form element
 //   const formElement = document.querySelector("form");
