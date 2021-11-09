@@ -252,8 +252,8 @@ html {
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .sr-only {
@@ -451,8 +451,18 @@ canvas {
   position: absolute;
 }
 
+.wrapper {
+  max-width: 1280px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+img {
+  display: block;
+}
+
 .productPage {
-  background-color: darkblue;
+  background-color: #040430;
   height: 10vh;
   width: 100%;
 }
@@ -501,6 +511,95 @@ nav.product ul li a {
 
 form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 35px;
+  width: 100%;
+  gap: 20px 2%;
+  background-color: #040430;
+  padding: 2rem;
+}
+form .select {
+  position: relative;
+  width: 100%;
+  min-width: 9.5rem;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.1rem;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  line-height: 1.1;
+  color: #040430;
+  background-color: #040430;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#f9f9f9), color-stop(33%, #fff));
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+form .select select {
+  position: absolute;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  top: -2px;
+  left: -2px;
+  background-color: transparent;
+  border: none;
+  padding: 4px 0 0 10px;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  outline: none;
+}
+form button {
+  margin-left: 2rem;
+  font-family: inherit;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #040430;
+  border: 2px solid white;
+  border-radius: 5px;
+  min-width: 9.5rem;
+}
+form button:hover {
+  color: #040430;
+  background-color: white;
+}
+
+.imageGallery {
+  width: 95%;
+}
+.imageGallery ul.images {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-auto-rows: minmax(350px, 1fr);
+  gap: 5px;
+  padding: 0;
+}
+.imageGallery ul.images img {
+  margin: 0 auto;
+}
+
+@media (max-width: 910px) {
+  form button {
+    grid-column-start: 2;
+    margin-left: 0;
+  }
+}
+@media (max-width: 495px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+  form .select, form button {
+    grid-column-start: 1;
+  }
+}
+.productFooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
   width: 100%;
 }

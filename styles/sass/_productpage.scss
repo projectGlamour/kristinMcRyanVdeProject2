@@ -1,5 +1,17 @@
+.wrapper {
+  max-width: 1280px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+img {
+  // width: 100%;
+  display: block;
+}
+
+
 .productPage {
-  background-color: darkblue;
+  background-color: rgb(4, 4, 48);
   height: 10vh;
   width: 100%;
 }
@@ -17,6 +29,7 @@
 main.productMain {
   position: relative;
 }
+
 nav.product {
   position: relative;
 
@@ -36,8 +49,108 @@ nav.product {
     }
   }
 }
+
 form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: 35px;
   width: 100%;
+  gap: 20px 2%;
+  background-color: rgb(4, 4, 48);
+  padding: 2rem;
+
+  // adding style to the div around the selects
+  .select {
+    position: relative;
+    width: 100%;
+    min-width: 9.5rem;
+    // max-width: 30ch;
+    // border: 1px solid rgb(4, 4, 48);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    font-size: 1.1rem;
+    letter-spacing: .8px;
+    cursor: pointer;
+    line-height: 1.1;
+    color: rgb(4, 4, 48);
+    background-color: rgb(4, 4, 48);
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+    // removing styling from selects
+    select {
+      position: absolute;
+      // A reset of styles, including removing the default dropdown arrow
+      appearance: none;
+      top: -2px;
+      left: -2px;
+      // Additional resets for further consistency
+      background-color: transparent;
+      border: none;
+      padding: 4px 0 0 10px;
+      margin: 0;
+      width: 100%;
+      // color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      cursor: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      // existing styles
+      outline: none;
+    }
+  }
+  button {
+    margin-left: 2rem;
+    font-family: inherit;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    background-color: rgb(4, 4, 48);
+    border: 2px solid white;
+    border-radius: 5px;
+    min-width: 9.5rem;
+  }
+  button:hover {
+    color: rgb(4, 4, 48);
+    background-color: white;
+  }
+}
+
+// image gallery
+.imageGallery {
+  width: 95%;
+  ul.images {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-auto-rows: minmax(350px, 1fr);
+    gap: 5px;
+    padding: 0;
+    img{
+      margin: 0 auto;
+    }
+  }
+}
+
+
+
+
+
+// media queries
+@media (max-width: 910px){
+  form {
+    button{
+      grid-column-start: 2;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 495px){
+  form {
+   grid-template-columns: 1fr;
+    .select, button {
+      grid-column-start: 1;
+    }
+  }
 }
