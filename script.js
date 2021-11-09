@@ -51,7 +51,7 @@ darkModeOnBttn.addEventListener("click", function () {
   canvas.style.backgroundColor = "purple";
  
 });
-// app.formFilter = () => {
+// app.formFilter = () => {//
 //   //get form element
 //   const formElement = document.querySelector("form");
 //   const submitButtonElement = document.querySelector("button[type=submit]");
