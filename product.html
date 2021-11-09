@@ -11,7 +11,7 @@
 </head>
 <body>
   <header class="productPage">
-    <div class="productTitleContainer" id = "productTitleContainer">
+    <div class="productTitleContainer wrapper" id = "productTitleContainer">
       <!-- this will change with the product that the user picks -->
       <h2>Imperial Glamour Products<span></span></h2>
     </div>
@@ -30,33 +30,42 @@
     <!-- form with filter options  -->
     <form class="productFilter">
       <!-- brand -->
-      <select name="brand" id="brand">
-        <option value="brand">Brand: </option>
-        <option value="brand1">Brand 1</option>
-        <option value="brand2">Brand 2</option>
-      </select>
+  
+      <div class="select">
+        <select name="brand" id="brand" class="customSelect">
+          <option value="brand">Brand: </option>
+          <option value="brand1">Brand 1</option>
+          <option value="brand2">Brand 2</option>
+        </select>
+      </div>
   
       <!-- price -->
-      <select name="" id="">
-        <option value="">Price:</option>
-        <option value="">
-          Least Expensive
-        </option>
-        <option value="">
-          Most Expensive
-        </option>
-      </select>
+      <div class="select">
+        <select name="price" id="price" class="customSelect">
+          <option value="">Price:</option>
+          <option value="">
+            Least Expensive
+          </option>
+          <option value="">
+            Most Expensive
+          </option>
+        </select>
+      </div>
+    
 
-     <!-- category -->
-      <select name="" id="">
-        <option value = "">Product Category</option>
+    <!-- category -->
+    <div class="select">
+      <select name="category" id="category" class="customSelect">
+        <option value = "">Category:</option>
         <option value = "">Lipstick</option>
         <option value = "">Lip Gloss</option>
         <option value = "">Lip Stain</option>
       </select>
+    </div>
 
       <!-- form submit button -->
       <button type="submit">Submit</button>
+     
     </form>
 
 
@@ -71,7 +80,7 @@
   </main>
 
   <!-- footer -->
-  <footer>
+  <footer class="productFooter">
     <div class = "credits">
       <p class = "creditsP">Copyright &copy; Juno College of Technology</p>  
     </div>        
