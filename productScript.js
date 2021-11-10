@@ -3,7 +3,7 @@ const receivedValue = localStorage.getItem("ProductValueSentFromHome");
 // namespacing starts
 const app = {};
 
-
+// adding product category from home page to header
 document.getElementById('productTitleContainer').innerHTML = 
 `<h2>Imperial Glamour Products ~ ${receivedValue}`;
 
@@ -28,6 +28,10 @@ app.formFilter = () => {
   submitButtonElement.addEventListener("click", function(event){
     event.preventDefault();
     
+    // clear any images in the gallery
+    const imageList = document.getElementById("ulImages"); 
+    imageList.innerText = '';
+
     // get selected brand
     const brandOption = formElement[0].selectedIndex;
     //check if brand selected
@@ -35,6 +39,9 @@ app.formFilter = () => {
     if (brandOption !== 0){
       // save value of selected brand in variable
       app.brandSelected = formElement[0][brandOption].value;
+      console.log(app.brandSelected)
+    }else {
+      app.brandSelected = '';
     }
 
     //  get selected price range selected by user
@@ -50,6 +57,9 @@ app.formFilter = () => {
       // most expensive was selected
       // assign values for price range
       app.priceGreaterThan = 20;
+      app.priceLessThan = 1000;
+    }else {
+      app.priceGreaterThan = 0;
       app.priceLessThan = 1000;
     }
 
@@ -71,29 +81,19 @@ app.formFilter = () => {
       app.productCategoryOption = "lip_stain";
     }
 
+    else{
+      app.productCategoryOption = "";
+    }
+
     console.log(app.brandSelected, app.priceGreaterThan, app.priceLessThan);
 
     // call API
-
-   
     app.getResults();
   })
 } // end of app.formFilter
 
-function removeimages (){
-  let list = document.getElementById("images");   // Get the <ul> element with id="myList"
-  list.remove();
-
-  const NewUl = document.getElementById("imageGallery");
-  const uniUL = document.createElement("ul");
-  uniUL.setAttribute("id", "images");
-  uniUL.setAttribute("class", "images");
-  NewUl.appendChild(uniUL);
 
 
-
-  
-}
 // method to take variables with user's selections and send to API
 app.getResults = () => {
   const url = new URL(app.apiUrl);

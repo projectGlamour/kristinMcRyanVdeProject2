@@ -759,20 +759,21 @@ form button {
   font-weight: bold;
   letter-spacing: 1px;
   color: white;
-  background-color: #38386d;
+  background-color: rgba(56, 56, 109, 0.5);
   border: 2px solid white;
   border-radius: 5px;
   min-width: 9.5rem;
+  -webkit-transition: background 1s;
+  transition: background 1s;
 }
-form button:hover {
+form button:hover,
+form button:focus {
   color: #040430;
   background-color: white;
 }
 
-.imageGallery {
-  width: 95%;
-}
 .imageGallery ul.images {
+  margin: 30px auto;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
