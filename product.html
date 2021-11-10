@@ -32,6 +32,20 @@
       <!-- brand -->
   
       <div class="select">
+        <label for="productType" class="sr-only">Select a brand</label>
+        <select name="productType" id="productType" class="customSelect">
+          <option value="productType" id ="productTypeHeader">Product Type: </option>
+          <option value="lipstick" id="type1">Lipstick</option>
+          <option value="lip_liner" id="type2">Lip Liner</option>
+          <option value="foundation" id="type3">Foundation</option>
+          <option value="eyeshadow" id="type4">Eyeshadow</option>
+          <option value="eyeliner" id="type5">Eyeliner</option>
+          <option value="bronzer" id="type6">Bronzer</option>
+          <option value="blush" id="type7">Blush</option>
+        </select>
+      </div>
+
+      <div class="select">
         <label for="brand" class="sr-only">Select a brand</label>
         <select name="brand" id="brand" class="customSelect">
           <option value="brand" id ="brandHeader">Brand: </option>
@@ -44,22 +58,8 @@
           <option value="smashbox" id="brand7">Smashbox</option>
         </select>
       </div>
+ 
   
-      <!-- price -->
-      <div class="select">
-        <label for="price" class="sr-only">Select a price range</label>
-        <select name="price" id="price" class="customSelect">
-          <option value="price">Price:</option>
-          <option value="leastExpensive">
-            Least Expensive
-          </option>
-          <option value="mostExpensive">
-            Most Expensive
-          </option>
-        </select>
-      </div>
-    
-
     <!-- category -->
     <div class="select">
       <label for="brand" class="sr-only">Select a product category</label>
@@ -68,6 +68,20 @@
         <option value="lipstick">Lipstick</option>
         <option value="lipGloss">Lip Gloss</option>
         <option value="lipStain">Lip Stain</option>
+      </select>
+    </div>
+
+    <!-- price -->
+    <div class="select">
+      <label for="price" class="sr-only">Select a price range</label>
+      <select name="price" id="price" class="customSelect">
+        <option value="price">Price:</option>
+        <option value="leastExpensive">
+          Least Expensive
+        </option>
+        <option value="mostExpensive">
+          Most Expensive
+        </option>
       </select>
     </div>
 
