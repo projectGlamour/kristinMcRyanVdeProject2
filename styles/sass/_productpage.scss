@@ -1,57 +1,42 @@
-.wrapper {
+// general styling
+.wrapperProduct {
   max-width: 1280px;
   width: 80%;
   margin: 0 auto;
 }
 
 img {
-  // width: 100%;
   display: block;
+ 
 }
 
-
+// header styling
 .productPage {
   background-color: rgb(4, 4, 48);
-  height: 10vh;
+  height: 13vh;
   width: 100%;
 }
 .productTitleContainer {
   @include Maxsize100;
   display: flex;
   justify-content: center;
-}
-
-main.productMain {
-  position: relative;
-}
-
-nav.product {
-  position: relative;
-
-  width: 100%;
-  ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
-    width: 75%;
-    padding: 0;
-    outline: solid green 2px;
-    li {
-      a {
-        text-decoration: none;
-        color: $colorBlack;
-      }
-    }
+  h2 {
+    text-align: center;
+    color: $colorWhite;
+    font-size: clamp(1rem, 1.4rem + 2.467vw, 2rem);
   }
 }
 
+// main styling
+
+// form
 form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: 35px;
   width: 100%;
   gap: 20px 2%;
-  background-color: rgb(4, 4, 48);
+  background-color: rgb(7, 7, 7);
   padding: 2rem;
 
   // adding style to the div around the selects
@@ -59,14 +44,14 @@ form {
     position: relative;
     width: 100%;
     min-width: 9.5rem;
-    // max-width: 30ch;
-    // border: 1px solid rgb(4, 4, 48);
     border-radius: 0.25em;
     padding: 0.25em 0.5em;
     font-size: 1.1rem;
     letter-spacing: .8px;
     cursor: pointer;
     line-height: 1.1;
+    text-transform: uppercase;
+    text-align-last:center;
     color: rgb(4, 4, 48);
     background-color: rgb(4, 4, 48);
     background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
@@ -74,10 +59,10 @@ form {
     // removing styling from selects
     select {
       position: absolute;
-      // A reset of styles, including removing the default dropdown arrow
-      appearance: none;
       top: -2px;
       left: -2px;
+      // A reset of styles, including removing the default dropdown arrow
+      appearance: none;
       // Additional resets for further consistency
       background-color: transparent;
       border: none;
@@ -100,12 +85,14 @@ form {
     font-weight: bold;
     letter-spacing: 1px;
     color: white;
-    background-color: rgb(4, 4, 48);
+    background-color: rgba(56, 56, 109, 0.5);
     border: 2px solid white;
     border-radius: 5px;
     min-width: 9.5rem;
+    transition: background 1s;
   }
-  button:hover {
+  button:hover,
+  button:focus {
     color: rgb(4, 4, 48);
     background-color: white;
   }
@@ -113,16 +100,19 @@ form {
 
 // image gallery
 .imageGallery {
-  width: 95%;
+  
   ul.images {
+    margin: 30px auto;
     list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-auto-rows: minmax(350px, 1fr);
-    gap: 5px;
+    gap: 1.5rem;
     padding: 0;
     img{
       margin: 0 auto;
+      border: 1px solid lightgray;
+      border-radius: 30px 0;
     }
   }
 }

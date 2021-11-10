@@ -11,9 +11,9 @@
 </head>
 <body>
   <header class="productPage">
-    <div class="productTitleContainer wrapper" id = "productTitleContainer">
+    <div class="productTitleContainer wrapperProduct" id = "productTitleContainer">
       <!-- this will change with the product that the user picks -->
-      <h2>Imperial Glamour Products<span></span></h2>
+      <h2>Imperial Glamour Products<span id="productImported"></span></h2>
     </div>
    
   </header>
@@ -32,21 +32,28 @@
       <!-- brand -->
   
       <div class="select">
+        <label for="brand" class="sr-only">Select a brand</label>
         <select name="brand" id="brand" class="customSelect">
-          <option value="brand">Brand: </option>
-          <option value="brand1">Brand 1</option>
-          <option value="brand2">Brand 2</option>
+          <option value="brand" id ="brandHeader">Brand: </option>
+          <option value="annabelle" id="brand1">Annabelle</option>
+          <option value="clinique" id="brand2">Clinique</option>
+          <option value="covergirl" id="brand3">Covergirl</option>
+          <option value="l'oreal" id="brand4">L'oreal</option>
+          <option value="maybelline" id="brand5">Maybelline</option>
+          <option value="revlon" id="brand6">Revlon</option>
+          <option value="smashbox" id="brand7">Smashbox</option>
         </select>
       </div>
   
       <!-- price -->
       <div class="select">
+        <label for="price" class="sr-only">Select a price range</label>
         <select name="price" id="price" class="customSelect">
-          <option value="">Price:</option>
-          <option value="">
+          <option value="price">Price:</option>
+          <option value="leastExpensive">
             Least Expensive
           </option>
-          <option value="">
+          <option value="mostExpensive">
             Most Expensive
           </option>
         </select>
@@ -55,11 +62,12 @@
 
     <!-- category -->
     <div class="select">
+      <label for="brand" class="sr-only">Select a product category</label>
       <select name="category" id="category" class="customSelect">
-        <option value = "">Category:</option>
-        <option value = "">Lipstick</option>
-        <option value = "">Lip Gloss</option>
-        <option value = "">Lip Stain</option>
+        <option value="category">Category:</option>
+        <option value="lipstick">Lipstick</option>
+        <option value="lipGloss">Lip Gloss</option>
+        <option value="lipStain">Lip Stain</option>
       </select>
     </div>
 
@@ -71,11 +79,11 @@
 
     <!-- section of images -->
     <section class = "imageGallery" id = "imageGallery">
-    <ul class="images" id = "images">
+  
+    <ul class="images" id = "ulImages">
       <!-- images from API call will be insereted here -->
     
     </ul>
-    <button onclick="removeimages();">Remove List</button>
     </section>
   </main>
 
