@@ -7,7 +7,6 @@
     display the first 15 products from the API call as images on the bottom of the page
     include details about each product that was received from the API call such as price
 */
-
 const app = {};
 
 app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
@@ -43,14 +42,7 @@ function valueSent() {
   window.location.href = "product.html"; 
 }
 
-const darkModeOnBttn = document.querySelector("input");
-let htmlElement = document.documentElement;
 
-darkModeOnBttn.addEventListener("click", function () {
-    
-  canvas.style.backgroundColor = "purple";
- 
-});
 // app.formFilter = () => {//
 //   //get form element
 //   const formElement = document.querySelector("form");
