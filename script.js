@@ -16,7 +16,7 @@ app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
 // app.ratingGreaterThan = null;
 // app.ratingLessThan = null;
 
-
+//jjjj
 app.getProductType = () => {
   // get all product buttons
   const buttonList = document.querySelectorAll("button[id^=product");

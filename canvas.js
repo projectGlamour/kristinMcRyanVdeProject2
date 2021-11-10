@@ -128,3 +128,4 @@ mouseTarget.addEventListener('mouseleave', () => {
 function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+//kjji
