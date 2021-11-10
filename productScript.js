@@ -4,7 +4,8 @@ const receivedValue = localStorage.getItem("ProductValueSentFromHome");
 const app = {};
 
 
-document.getElementById('productTitleContainer').innerHTML = "<h2>" + "Imperial Glamour Products " + receivedValue + "</h2>";
+document.getElementById('productTitleContainer').innerHTML = 
+`<h2>Imperial Glamour Products ~ ${receivedValue}`;
 
 
 
