@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project 2 - Imperial Glamour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://kit.fontawesome.com/c04b9fcf4d.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
       <nav class="home" id = "homeNav">
         <div class="theme-toggle">
           <label class="custom-radio-button">
-            <input id="first" name="toggle-state" type="radio" checked />
+            <input id="first" name="toggle-state" type="radio" />
             <span class="checkmark"></span>
           </label>
       
@@ -25,7 +26,7 @@
           </label>
         
           <label class="custom-radio-button">
-            <input id="third" name="toggle-state" type="radio" />
+            <input id="third" name="toggle-state" type="radio" checked="checked"/>
             <span class="checkmark"></span>
           </label>
         </div>
@@ -54,15 +55,24 @@
           </div>
         </div>
       </div>
-      <section class = "aboutIntroduction">
+      <section class = "aboutIntroduction" id = "aboutIntroduction">
         <div class = "wrapperMain">
           <div class = "aboutParaContent">
-            <h2>About my Ass</h2>
+            <h2>About Imperial Glamour</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt blanditiis perspiciatis, commodi ea ullam nobis, a, adipisci enim optio obcaecati deleniti totam modi minima aut exercitationem unde alias aliquid nihil! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem inventore quo ducimus asperiores aliquam similique cum quaerat veniam, obcaecati, nihil ratione laudantium sed quam aliquid fugit facilis. Aliquam, vero suscipit.</p>
+
+            <h2>Makeup Types and Brands Supported</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt blanditiis perspiciatis, commodi ea ullam nobis, a, adipisci enim optio obcaecati deleniti totam modi minima aut exercitationem unde alias aliquid nihil! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem inventore quo ducimus asperiores aliquam similique cum quaerat veniam, obcaecati, nihil ratione laudantium sed quam aliquid fugit facilis. Aliquam, vero suscipit.</p>
+            <div class="aboutParaImgGallery">
+              <img src="https://via.placeholder.com/300.png/09f/fff">
+              <img src="https://via.placeholder.com/300.png/09f/fff">
+            </div>
           </div>
+
           <div class="aboutproductimg">
-            <img src="https://via.placeholder.com/300.png/09f/fff">
+            <img src="https://via.placeholder.com/300.png/09f/fff" id = "roundimage">
           </div>
+          <div class = "scrollupto" onclick="pageScroll();"><i class="fas fa-angle-up"></i></div> 
         </div>
       </section>
     <main>
@@ -72,6 +82,7 @@
       </div>        
     </footer>
   <!-- attaching JSpoop script file -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="script.js"></script>
   <script src="canvas.js"></script>
 </body>
