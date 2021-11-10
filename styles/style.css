@@ -356,7 +356,18 @@ footer {
   border-bottom: solid black 2px;
 }
 
-.home ul {
+nav.product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  background-color: #070707;
+}
+
+.home ul,
+.product ul {
   list-style-type: none;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
@@ -375,7 +386,8 @@ footer {
       align-content: center;
 }
 
-.home li {
+.home li,
+.product li {
   border: solid gold 2px;
   padding: 10px 10px;
   height: 45px;
@@ -391,7 +403,8 @@ footer {
   background-color: #171717;
 }
 
-.home ul a {
+.home ul a,
+.product ul a {
   text-decoration: none;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -408,15 +421,27 @@ footer {
   transition: all 0.15s ease-in-out;
 }
 
-.home li:hover {
+.home li:hover,
+.product li:hover {
   background-color: #747272;
   -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
 
 @media only screen and (max-width: 900px) {
-  .home ul {
+  .home ul,
+.product ul {
     width: 100%;
+  }
+}
+@media only screen and (max-width: 625px) {
+  nav.product ul {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  nav.product ul li {
+    margin-bottom: 20px;
   }
 }
 .wrapperMain {
@@ -650,7 +675,7 @@ canvas {
   display: inline-block;
 }
 
-.wrapper {
+.wrapperProduct {
   max-width: 1280px;
   width: 80%;
   margin: 0 auto;
@@ -662,7 +687,7 @@ img {
 
 .productPage {
   background-color: #040430;
-  height: 10vh;
+  height: 13vh;
   width: 100%;
 }
 
@@ -677,32 +702,9 @@ img {
           justify-content: center;
 }
 .productTitleContainer h2 {
+  text-align: center;
   color: white;
-}
-
-main.productMain {
-  position: relative;
-}
-
-nav.product {
-  position: relative;
-  width: 100%;
-}
-nav.product ul {
-  list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  width: 75%;
-  padding: 0;
-  outline: solid green 2px;
-}
-nav.product ul li a {
-  text-decoration: none;
-  color: black;
+  font-size: clamp(1rem, 1.4rem + 2.467vw, 2rem);
 }
 
 form {
@@ -711,7 +713,7 @@ form {
   grid-auto-rows: 35px;
   width: 100%;
   gap: 20px 2%;
-  background-color: #040430;
+  background-color: #070707;
   padding: 2rem;
 }
 form .select {
@@ -757,7 +759,7 @@ form button {
   font-weight: bold;
   letter-spacing: 1px;
   color: white;
-  background-color: #040430;
+  background-color: #38386d;
   border: 2px solid white;
   border-radius: 5px;
   min-width: 9.5rem;

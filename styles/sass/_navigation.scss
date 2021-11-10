@@ -34,8 +34,17 @@
   background-position: 0px 0px, 0px 0px, 5px 5px, 0px 0px;
   border-bottom: solid black 2px;
 }
+
+// product nav
+nav.product {
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(7, 7, 7);
+}
+
 //poop
-.home ul {
+.home ul,
+.product ul {
   list-style-type: none;
   justify-content: space-evenly;
   flex-direction: row;
@@ -46,7 +55,8 @@
   align-content: center;
 }
 
-.home li {
+.home li,
+.product li {
   border: solid gold 2px;
   padding: 10px 10px;
   height: 45px;
@@ -60,7 +70,8 @@
   background-color: #171717;
 }
 
-.home ul a {
+.home ul a,
+.product ul a {
   text-decoration: none;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -71,14 +82,27 @@
   font-size: $fontSmall;
   transition: all 0.15s ease-in-out;
 }
-.home li:hover {
+.home li:hover,
+.product li:hover {
   background-color: rgb(116, 114, 114);
 
   transition: all 0.35s ease-in-out;
 }
 
 @media only screen and (max-width: 900px) {
-  .home ul {
+  .home ul,
+  .product ul {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 625px){
+  nav.product ul {
+    flex-wrap: wrap;
+    margin-top: 20px;
+    li {
+      
+      margin-bottom: 20px;
+    }
   }
 }

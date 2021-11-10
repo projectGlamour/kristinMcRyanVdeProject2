@@ -1,5 +1,5 @@
 // general styling
-.wrapper {
+.wrapperProduct {
   max-width: 1280px;
   width: 80%;
   margin: 0 auto;
@@ -12,7 +12,7 @@ img {
 // header styling
 .productPage {
   background-color: rgb(4, 4, 48);
-  height: 10vh;
+  height: 13vh;
   width: 100%;
 }
 .productTitleContainer {
@@ -20,35 +20,13 @@ img {
   display: flex;
   justify-content: center;
   h2 {
+    text-align: center;
     color: $colorWhite;
+    font-size: clamp(1rem, 1.4rem + 2.467vw, 2rem);
   }
 }
 
 // main styling
-main.productMain {
-  position: relative;
-}
-
-// nav
-nav.product {
-  position: relative;
-
-  width: 100%;
-  ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
-    width: 75%;
-    padding: 0;
-    outline: solid green 2px;
-    li {
-      a {
-        text-decoration: none;
-        color: $colorBlack;
-      }
-    }
-  }
-}
 
 // form
 form {
@@ -57,7 +35,7 @@ form {
   grid-auto-rows: 35px;
   width: 100%;
   gap: 20px 2%;
-  background-color: rgb(4, 4, 48);
+  background-color: rgb(7, 7, 7);
   padding: 2rem;
 
   // adding style to the div around the selects
@@ -106,7 +84,7 @@ form {
     font-weight: bold;
     letter-spacing: 1px;
     color: white;
-    background-color: rgb(4, 4, 48);
+    background-color: rgb(56, 56, 109);
     border: 2px solid white;
     border-radius: 5px;
     min-width: 9.5rem;
