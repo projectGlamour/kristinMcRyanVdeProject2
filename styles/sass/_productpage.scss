@@ -34,6 +34,8 @@ img {
 #productNav {
   width: 100%;
   border: solid gold 2px;
+  border-left: 0;
+  border-right: 0;
   ul {
     width: 50%;
     padding: 15px;
@@ -51,9 +53,11 @@ form {
   background-color: rgb(36, 35, 35);
   padding: 2rem;
   border: lightgray solid 2px;
+  border-left: 0;
+  border-right: 0;
 
   // adding style to the div around the selects
-  .select {
+  .selection {
     position: relative;
     width: 100%;
     min-width: 9.5rem;
@@ -68,6 +72,7 @@ form {
     color: rgb(4, 4, 48);
     background-color: rgb(4, 4, 48);
     background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+    position: relative;
 
     // removing styling from selects
     select {
@@ -90,11 +95,14 @@ form {
       cursor: pointer;
       line-height: 1.1;
       text-transform: uppercase;
-      align-items: center;
       text-align: center;
-      align-content: center;
+    }
+
+    option {
+      text-align: left;
     }
   }
+
   button {
     margin-left: 2rem;
     font-family: inherit;
@@ -116,6 +124,21 @@ form {
 .productMain {
   margin-bottom: 5%;
 }
+
+img {
+  margin: 0 auto;
+  border: 1px solid lightgray;
+  border-radius: 30px;
+  cursor: pointer;
+  height: 350px;
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+}
+
+img:hover {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
 // image gallery
 .imageGallery {
   ul.images {
@@ -126,19 +149,40 @@ form {
     grid-auto-rows: minmax(400px, 1fr);
     gap: 1.5rem;
     padding: 2%;
-    img {
-      margin: 0 auto;
-      border: 1px solid lightgray;
-      border-radius: 30px;
-      cursor: pointer;
-      background-color: #f9f9f9;
-    }
-
-    img:hover {
-      opacity: 0.7;
-      transform: scale(1.05);
-    }
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
+}
+
+li p {
+  display: none;
+}
+.open {
+  position: fixed;
+  width: 95%;
+  height: 100%;
+  top: 0;
+  left: 2.5%;
+  margin: 0;
+  background-color: lavender;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.open p {
+  display: block;
+  width: 30%;
+  margin-right: 5%;
+}
+.opened {
+  transform: scale(2);
+  border: 5px solid gold;
+}
+
+.opened:hover {
+  opacity: 1;
+  transform: scale(2);
 }
 
 // media queries

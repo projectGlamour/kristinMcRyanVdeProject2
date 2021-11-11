@@ -780,6 +780,8 @@ img {
 #productNav {
   width: 100%;
   border: solid gold 2px;
+  border-left: 0;
+  border-right: 0;
 }
 #productNav ul {
   width: 50%;
@@ -795,8 +797,10 @@ form {
   background-color: #242323;
   padding: 2rem;
   border: lightgray solid 2px;
+  border-left: 0;
+  border-right: 0;
 }
-form .select {
+form .selection {
   position: relative;
   width: 100%;
   min-width: 9.5rem;
@@ -813,8 +817,9 @@ form .select {
   background-color: #040430;
   background-image: -webkit-gradient(linear, left bottom, left top, from(#f9f9f9), color-stop(33%, #fff));
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  position: relative;
 }
-form .select select {
+form .selection select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -832,12 +837,10 @@ form .select select {
   cursor: pointer;
   line-height: 1.1;
   text-transform: uppercase;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   text-align: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
+}
+form .selection option {
+  text-align: left;
 }
 form button {
   margin-left: 2rem;
@@ -862,6 +865,22 @@ form button:focus {
   margin-bottom: 5%;
 }
 
+img {
+  margin: 0 auto;
+  border: 1px solid lightgray;
+  border-radius: 30px;
+  cursor: pointer;
+  height: 350px;
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+}
+
+img:hover {
+  opacity: 0.7;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
 .imageGallery ul.images {
   margin: 30px auto;
   list-style: none;
@@ -870,18 +889,53 @@ form button:focus {
   grid-auto-rows: minmax(400px, 1fr);
   gap: 1.5rem;
   padding: 2%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
-.imageGallery ul.images img {
-  margin: 0 auto;
-  border: 1px solid lightgray;
-  border-radius: 30px;
-  cursor: pointer;
-  background-color: #f9f9f9;
+
+li p {
+  display: none;
 }
-.imageGallery ul.images img:hover {
-  opacity: 0.7;
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+
+.open {
+  position: fixed;
+  width: 95%;
+  height: 100%;
+  top: 0;
+  left: 2.5%;
+  margin: 0;
+  background-color: lavender;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.open p {
+  display: block;
+  width: 30%;
+  margin-right: 5%;
+}
+
+.opened {
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  border: 5px solid gold;
+}
+
+.opened:hover {
+  opacity: 1;
+  -webkit-transform: scale(2);
+          transform: scale(2);
 }
 
 @media (max-width: 910px) {

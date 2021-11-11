@@ -9,7 +9,8 @@ document.getElementById('productTitleContainer').innerHTML =
 
 // variable list - namespace - starts
 app.apiUrl = "https://makeup-api.herokuapp.com/api/v1/products.json";
-let productCategoryOption = ""; 
+let productCategoryOption = "";
+let count = "0";
 app.brandSelected = ""; // variable for the user's brand selection
 app.priceLessThan = 1000; // variable for user's price selection
 app.priceGreaterThan = 0; // variable for user's price selection
@@ -210,26 +211,47 @@ app.displayImages = (arrayData) => {
   arrayData.forEach((item) => {
     // create a list item element
     const li = document.createElement('li');
-
+   
     // create an image item
     const img = document.createElement('img');
+    const para = document.createElement('p');
 
     // add the content we need to the image element
     img.src = item.api_featured_image;
+    li.width = "350";
     img.width = "350";
-    img.height = "350"; 
+    li.height = "450"; 
     img.alt = item.description;
-    
+    para.innerText = img.alt;
+
+  
      // append the img element to the list item
     li.appendChild(img);
+    li.appendChild(para);
 
     // append the li to the gallery ul
     imagesUl.appendChild(li);
+   
+    img.addEventListener("click", function () {
+      count++;
+      if (count > 0) {
+    
+        document.body.style.backgroundColor = "rgb(5, 5, 49)";
+        li.classList.add("open");
+        img.classList.add("opened");
+      }
+      if (count > 1) {
+    
+        document.body.style.backgroundColor = "rgb(5, 5, 49)";
+        li.classList.remove("open");
+        img.classList.remove("opened")
+        count = 0;
+      }
+    });
+
   })
 
 }// end of display images
-
-
 
 app.init = () => {
   // 
