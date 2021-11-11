@@ -218,3 +218,6 @@ function Productdata() {
   }
 };
 Productdata();
+function pageScroll() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}

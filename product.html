@@ -8,16 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="./styles/style.css">
+  <script src="https://kit.fontawesome.com/c04b9fcf4d.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header class="productPage">
-    <div class="productTitleContainer wrapperProduct" id = "productTitleContainer">
-      <!-- this will change with the product that the user picks -->
-      <h2>Imperial Glamour Products<span id="productImported"></span></h2>
-    </div>
-   
-  </header>
-  <main class="productMain">
     <!-- nav -->
     <nav class="product" id="productNav">
       <ul>
@@ -27,6 +21,13 @@
         <li><a href="">Blog</a></li>
       </ul>
     </nav>
+    <div class="productTitleContainer" id = "productTitleContainer">
+      <!-- this will change with the product that the user picks -->
+      <h2>Imperial Glamour Products<span id="productImported"></span></h2>
+    </div>
+   
+  </header>
+  <main class="productMain">
     <!-- form with filter options  -->
     <form class="productFilter">
       <!-- brand -->
@@ -87,7 +88,6 @@
 
       <!-- form submit button -->
       <button type="submit">Submit</button>
-      <button type="" onclick="Productdata();">lol</button>
     </form>
 
 
@@ -99,6 +99,7 @@
     
     </ul>
     </section>
+    <div class = "scrollupto" onclick="pageScroll();"><i class="fas fa-angle-up"></i></div> 
   </main>
 
   <!-- footer -->
