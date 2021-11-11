@@ -15,6 +15,51 @@ app.priceLessThan = 1000; // variable for user's price selection
 app.priceGreaterThan = 0; // variable for user's price selection
 app.productType = receivedValue;
 
+
+app.generateProductCategories = () => {
+  const productCategoryArrays = {
+    blush: ["powder", "cream"],
+    bronzer: ["powder"],
+    eyebrow: ["penci"],
+    eyeliner: ["liquid", "pencil", "gel", "cream"],
+    eyeshadow: ["pallette", "pencil", "cream"],
+    foundation: ["concealer", "liquid", "contour", "bb cc", "cream", "mineral", "powder", "highlighter"],
+    lip_liner: ["pencil"],
+    lipstick: ["lipstick", "lip gloss", "liquid", "stain"]
+  }
+    // add event listener to product category select
+    const productType = document.getElementById("productType");
+    productType.addEventListener('change', (event) => {
+      console.log("changed", event)
+      const result = event.target.value;
+
+      //clear previous options added document.querySelectorAll('.classname').forEach(e => e.remove());
+      const optionsToRemove = document.querySelectorAll(".added");
+      optionsToRemove.forEach(event => event.remove());
+
+      // go through array that equals value of result to assign options for product category
+      const chosenCategory = productCategoryArrays[result];
+     
+      console.log(chosenCategory);
+      // get product category select
+      const productCategorySelect = document.getElementById("category");
+
+      // loop through product array to populate category select
+      chosenCategory.forEach((item) => {
+        // create option
+        const option = document.createElement("option");
+        option.classList.add("added");
+        option.value = item;
+        option.text = item;
+
+        productCategorySelect.appendChild(option);
+      })
+    })
+}// end of app.generateProductCategories
+
+
+
+
 // method to get form element, listen for form submission and assign variables based on user's selections
 app.formFilter = () => {
   //get form element
@@ -44,6 +89,8 @@ app.formFilter = () => {
       // ** make product Capitalized
       document.getElementById('productTitleContainer').innerHTML = 
 `<h2>Imperial Glamour Products ~ ${app.productType}`;
+
+     
     }
 
     // get selected brand
@@ -58,25 +105,31 @@ app.formFilter = () => {
       app.brandSelected = '';
     }
 
-       const productCategory = formElement[2].selectedIndex;
+    // get product category selected by user
+    const categoryOption = formElement[2].selectedIndex;
     
-    if (productCategory === 1) {
-      app.productCategoryOption = product_categoryA; 
-
+    if (categoryOption !== 0){
+      // save value of category in variable
+      app.productCategoryOption = formElement[2][categoryOption].value;
+      console.log(app.productCategoryOption);
     }
-    else if (productCategory === 2) {
+    // if (productCategory === 1) {
+    //   app.productCategoryOption = product_categoryA; 
 
-      app.productCategoryOption = product_categoryB; 
+    // }
+    // else if (productCategory === 2) {
 
-    }
+    //   app.productCategoryOption = product_categoryB; 
 
-    else if (productCategory === 3) {
-      app.productCategoryOption = product_categoryC;
-    }
+    // }
 
-    else{
-      app.productCategoryOption = "";
-    }
+    // else if (productCategory === 3) {
+    //   app.productCategoryOption = product_categoryC;
+    // }
+
+    // else{
+    //   app.productCategoryOption = "";
+    // }
 
     //  get selected price range selected by user
     const priceOption = formElement[3].selectedIndex;
@@ -103,13 +156,14 @@ app.formFilter = () => {
 
     console.log(app.brandSelected, app.priceGreaterThan, app.priceLessThan);
 
-   
-    if (productTypeOption > 0 && brandOption > 0 && productCategory > 0 && priceOption > 0 ){
-      // call API
+    console.log(productTypeOption, brandOption, categoryOption, priceOption);
+
+    if (productTypeOption === 0 && brandOption === 0 && categoryOption === 0 && priceOption === 0 ){
       alert('Please select a Product type');
     }else {
-      
+      // call API
       app.getResults();
+      
     }
   })
 } // end of app.formFilter
@@ -180,44 +234,16 @@ app.displayImages = (arrayData) => {
 app.init = () => {
   // 
   app.formFilter();
+   // populate product category select
+      app.generateProductCategories();
 }
 
 // call init
 app.init();
 
-let product_categoryA = "";
-let product_categoryB = "";
-let product_categoryC = "";
-let product_categoryD = "";
 
-document.getElementById("choiceA").value = product_categoryA;
-document.getElementById("choiceB").value = product_categoryB;
-document.getElementById("choiceC").value = product_categoryC;
 
-document.getElementById("choiceA").innerHTML = product_categoryA;
-document.getElementById("choiceB").innerHTML = product_categoryB;
-document.getElementById("choiceC").innerHTML = product_categoryC;
-
-count = app.productType;
-
-function Productdata() {
-  document.body.style.backgroundColor = "black";
-
-  if (count === "Lipstick" ){
-    product_categoryA = "powder";
-    product_categoryB = "cream";
-    document.getElementById("choiceA").innerHTML = product_categoryA;
-    document.getElementById("choiceB").innerHTML = product_categoryB;
-  }
-
-  if (count === "lipstick2" )
-  
-  {
-    product_categoryA = "powder";
-    product_categoryB = "cream";
-  }
-};
-Productdata();
 function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
