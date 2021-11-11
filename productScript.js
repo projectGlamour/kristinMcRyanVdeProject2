@@ -242,6 +242,8 @@ app.init = () => {
 app.init();
 
 
+
 function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
