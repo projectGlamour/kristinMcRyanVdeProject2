@@ -8,7 +8,7 @@ document.getElementById('productTitleContainer').innerHTML =
 `<h2>Imperial Glamour Products ~ ${receivedValue}`;
 
 // variable list - namespace - starts
-app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
+app.apiUrl = "https://makeup-api.herokuapp.com/api/v1/products.json";
 let productCategoryOption = ""; 
 app.brandSelected = ""; // variable for the user's brand selection
 app.priceLessThan = 1000; // variable for user's price selection
