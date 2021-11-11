@@ -39,7 +39,6 @@ app.formFilter = () => {
       // save value of selected product type
       // this will overwrite receivedValue
       app.productType = formElement[0][productTypeOption].value;
-
       // change product name in header to match
       // *** STRETCH get innerText of selected type
       // ** make product Capitalized
@@ -62,17 +61,17 @@ app.formFilter = () => {
        const productCategory = formElement[2].selectedIndex;
     
     if (productCategory === 1) {
-      app.productCategoryOption = "lipstick"; 
+      app.productCategoryOption = product_categoryA; 
 
     }
     else if (productCategory === 2) {
 
-      app.productCategoryOption = "lip_gloss"; 
+      app.productCategoryOption = product_categoryB; 
 
     }
 
     else if (productCategory === 3) {
-      app.productCategoryOption = "lip_stain";
+      app.productCategoryOption = product_categoryC;
     }
 
     else{
@@ -185,3 +184,37 @@ app.init = () => {
 
 // call init
 app.init();
+
+let product_categoryA = "";
+let product_categoryB = "";
+let product_categoryC = "";
+let product_categoryD = "";
+
+document.getElementById("choiceA").value = product_categoryA;
+document.getElementById("choiceB").value = product_categoryB;
+document.getElementById("choiceC").value = product_categoryC;
+
+document.getElementById("choiceA").innerHTML = product_categoryA;
+document.getElementById("choiceB").innerHTML = product_categoryB;
+document.getElementById("choiceC").innerHTML = product_categoryC;
+
+count = app.productType;
+
+function Productdata() {
+  document.body.style.backgroundColor = "black";
+
+  if (count === "Lipstick" ){
+    product_categoryA = "powder";
+    product_categoryB = "cream";
+    document.getElementById("choiceA").innerHTML = product_categoryA;
+    document.getElementById("choiceB").innerHTML = product_categoryB;
+  }
+
+  if (count === "lipstick2" )
+  
+  {
+    product_categoryA = "powder";
+    product_categoryB = "cream";
+  }
+};
+Productdata();
