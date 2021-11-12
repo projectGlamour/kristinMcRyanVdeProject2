@@ -152,8 +152,16 @@ img:hover {
     overflow-x: hidden;
     overflow-y: hidden;
   }
-}
 
+  h2 {
+    text-align: center;
+    width: 100%;
+    text-transform: capitalize;
+  }
+}
+.smallImg {
+  height: 450px;
+}
 li p {
   display: none;
 }
@@ -172,9 +180,16 @@ li p {
 }
 .open p {
   display: block;
-  width: 30%;
+  flex-wrap: wrap;
+  width: 45%;
   margin-right: 5%;
+  line-height: 25px;
 }
+
+.open h2 {
+  display: none;
+}
+
 .opened {
   transform: scale(2);
   border: 5px solid gold;

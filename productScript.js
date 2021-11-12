@@ -17,7 +17,7 @@ app.brandSelected = ""; // variable for the user's brand selection
 app.priceLessThan = 1000; // variable for user's price selection
 app.priceGreaterThan = 0; // variable for user's price selection
 // app.productType = receivedValue;
-
+app.productName = "";
 
 app.changeToTitle = (value) => {
   // change value to string to put in h2 span
@@ -221,6 +221,7 @@ app.getResults = () => {
     brand: app.brandSelected,
     price_greater_than: app.priceGreaterThan,
     price_less_than: app.priceLessThan,
+    name: app.productName,
     product_type: app.productType
   })
 
@@ -256,12 +257,15 @@ app.displayImages = (arrayData) => {
     // create an image item
     const img = document.createElement('img');
     const para = document.createElement('p');
+    const h2heading = document.createElement('h2');
 
     // add the content we need to the image element
     img.src = item.api_featured_image;
     li.width = "350";
     img.width = "350";
-    li.height = "450"; 
+    li.height = "450";
+    li.className = "smallImg";
+    h2heading.innerText = item.name;
     img.alt = item.description;
     para.innerText = img.alt;
 
@@ -269,7 +273,7 @@ app.displayImages = (arrayData) => {
      // append the img element to the list item
     li.appendChild(img);
     li.appendChild(para);
-
+    li.appendChild(h2heading);
     // append the li to the gallery ul
     imagesUl.appendChild(li);
 
@@ -297,3 +301,142 @@ function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+const productSelectedBySelf = document.querySelectorAll (".productTypeClass");
+productSelectedBySelf.forEach(function(item) {
+  item.addEventListener('click', function() {
+    formElement = document.querySelector("form");
+    
+    const imageList = document.getElementById("ulImages"); 
+    imageList.innerText = '';
+
+    const productTypeOption = formElement[0].selectedIndex;
+
+    if (productTypeOption !== 0){
+      app.productType = formElement[0][productTypeOption].value;
+      const nameCapitalized = app.changeToTitle(app.productType)
+      document.getElementById('productTitleContainer').innerHTML = `         <h2>Imperial Glamour Products ~ ${nameCapitalized}`;
+      app.getResults2();
+    }
+    if (brandOption !== 0 && productTypeOption !== 0){
+      // save value of selected brand in variable THIS IS WHAT I NEED HELP WITH 
+      app.brandSelected = formElement[1][brandOption].value;
+      app.productType = formElement[0][productTypeOption].value;
+      app.getResults3();
+
+    }
+
+  
+  });
+});
+  
+app.getResults2 = () => {
+  const url = new URL(app.apiUrl);
+  url.search = new URLSearchParams({
+    product_type: app.productType
+    
+  })
+
+  fetch(url)
+  .then((response) => {
+    return response.json();
+  })
+  .then((jsonResponse) => {
+    console.log(`jsonresponse in getdata API call on submit ${jsonResponse}`);
+
+    // check if returns empty array
+    if(jsonResponse.length !== 0){
+      // call function to display images
+      app.displayImages(jsonResponse);
+    }else {
+      alert('No results');
+    }
+  })
+}
+  
+
+
+const brandSelectedBySelf = document.querySelectorAll (".brandTypeClass");
+brandSelectedBySelf.forEach(function(item) {
+  item.addEventListener('click', function() {
+    formElement = document.querySelector("form");
+    
+    const imageList = document.getElementById("ulImages"); 
+    imageList.innerText = '';
+
+    const brandOption = formElement[1].selectedIndex;
+    const productTypeOption = formElement[0].selectedIndex;
+    //check if brand selected
+    // if no user input option = 0
+    if (brandOption !== 0 && productTypeOption !== 0){
+      // save value of selected brand in variable
+      app.brandSelected = formElement[1][brandOption].value;
+      app.productType = formElement[0][productTypeOption].value;
+      app.getResults3();
+
+    }
+    
+    else {
+      app.brandSelected = '';
+    }
+    if (brandOption !== 0) {
+
+      app.brandSelected = formElement[1][brandOption].value;
+      app.getResults4();
+
+    }
+ 
+  
+  });
+});
+  
+app.getResults3 = () => {
+  const url = new URL(app.apiUrl);
+  url.search = new URLSearchParams({
+    
+    brand: app.brandSelected,
+    product_type: app.productType
+  })
+
+  fetch(url)
+  .then((response) => {
+    return response.json();
+  })
+  .then((jsonResponse) => {
+    console.log(`jsonresponse in getdata API call on submit ${jsonResponse}`);
+
+    // check if returns empty array
+    if(jsonResponse.length !== 0){
+      // call function to display images
+      app.displayImages(jsonResponse);
+    }else {
+      alert('No results');
+    }
+  })
+}
+  
+
+
+app.getResults4 = () => {
+  const url = new URL(app.apiUrl);
+  url.search = new URLSearchParams({
+    
+    brand: app.brandSelected
+
+  })
+
+  fetch(url)
+  .then((response) => {
+    return response.json();
+  })
+  .then((jsonResponse) => {
+    console.log(`jsonresponse in getdata API call on submit ${jsonResponse}`);
+
+    // check if returns empty array
+    if(jsonResponse.length !== 0){
+      // call function to display images
+      app.displayImages(jsonResponse);
+    }else {
+      alert('No results');
+    }
+  })
+  }
