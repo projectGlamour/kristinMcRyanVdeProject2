@@ -21,10 +21,14 @@ app.priceGreaterThan = 0; // variable for user's price selection
 
 app.changeToTitle = (value) => {
   // change value to string to put in h2 span
-  let text = value;
-  text.replace("_", " ")
-  const title = text(0).toUpperCase + text.slice(1)
-  return title;
+  let text = value.slice(0, 1).toUpperCase() + value.slice(1);
+  console.log(`this is text in changeToTitle ${text}`)
+  if (text === "Lip_liner"){
+    newText = text.slice(0, 3) + " " + text.slice(4);
+    console.log(`this is the newtext ${newText}`)
+    return newText
+  }
+  return text;
 }
 
 app.changeToValue = (title) => {
@@ -145,8 +149,9 @@ app.formFilter = () => {
       // change product name in header to match
       // *** STRETCH get innerText of selected type
       // ** make product Capitalized
+      const nameCapitalized = app.changeToTitle(app.productType)
       document.getElementById('productTitleContainer').innerHTML = 
-`<h2>Imperial Glamour Products ~ ${app.productType}`;
+`<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
 
      
     }
