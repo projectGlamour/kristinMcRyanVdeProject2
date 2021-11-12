@@ -211,6 +211,28 @@ app.formFilter = () => {
 } // end of app.formFilter
 
 
+// *** NEW ATTEMPT TO SORT BY SELECTS
+// listen for changes to the selects by the user
+app.getUserFilters = () => {
+   //get form element
+  let formElement = document.querySelector("form");
+
+  // get all selects
+  const selectElements = document.querySelectorAll("select");
+
+  selectElements.forEach(element => {
+   element.addEventListner('change', (event)=>{     
+     
+     
+    });
+  });
+
+  // loop through selectElements and put event listeners on all selects
+
+}
+
+
+
 
 // method to take variables with user's selections and send to API
 app.getResults = () => {
