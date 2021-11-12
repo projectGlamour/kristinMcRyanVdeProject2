@@ -309,16 +309,15 @@ productSelectedBySelf.forEach(function(item) {
     const imageList = document.getElementById("ulImages"); 
     imageList.innerText = '';
 
+    const brandOption = formElement[1].selectedIndex;
     const productTypeOption = formElement[0].selectedIndex;
 
-    if (productTypeOption !== 0){
+    if (productTypeOption !== 0 && brandOption === 0){
       app.productType = formElement[0][productTypeOption].value;
-      const nameCapitalized = app.changeToTitle(app.productType)
-      document.getElementById('productTitleContainer').innerHTML = `         <h2>Imperial Glamour Products ~ ${nameCapitalized}`;
       app.getResults2();
     }
+    
     if (brandOption !== 0 && productTypeOption !== 0){
-      // save value of selected brand in variable THIS IS WHAT I NEED HELP WITH 
       app.brandSelected = formElement[1][brandOption].value;
       app.productType = formElement[0][productTypeOption].value;
       app.getResults3();
@@ -378,7 +377,7 @@ brandSelectedBySelf.forEach(function(item) {
     else {
       app.brandSelected = '';
     }
-    if (brandOption !== 0) {
+    if (brandOption !== 0 && productTypeOption === 0) {
 
       app.brandSelected = formElement[1][brandOption].value;
       app.getResults4();
