@@ -1,11 +1,13 @@
 const receivedValue = localStorage.getItem("ProductValueSentFromHome");
+console.log(`This is the value from home page ${receivedValue}`)
+// adding product category from home page to header
+document.getElementById('productTitleContainer').innerHTML = 
+`<h2>Imperial Glamour Products ~ ${receivedValue}`;
+
 
 // namespacing starts
 const app = {};
 
-// adding product category from home page to header
-document.getElementById('productTitleContainer').innerHTML = 
-`<h2>Imperial Glamour Products ~ ${receivedValue}`;
 
 // variable list - namespace - starts
 app.apiUrl = "https://makeup-api.herokuapp.com/api/v1/products.json";
@@ -14,10 +16,62 @@ let count = "0";
 app.brandSelected = ""; // variable for the user's brand selection
 app.priceLessThan = 1000; // variable for user's price selection
 app.priceGreaterThan = 0; // variable for user's price selection
-app.productType = receivedValue;
+// app.productType = receivedValue;
 
 
-app.generateProductCategories = () => {
+app.changeToTitle = (value) => {
+  // change value to string to put in h2 span
+  let text = value;
+  text.replace("_", " ")
+  const title = text(0).toUpperCase + text.slice(1)
+  return title;
+}
+
+app.changeToValue = (title) => {
+  // change recieved value from title to value 
+  let text = title.toLowerCase();
+  if (text === "lipliner"){
+    newText = text.slice(0, 3) + "_" + text.slice(3);
+    console.log(`this is the newtext ${newText}`)
+    return newText
+  }
+  return text; 
+}
+
+// takes the product type and changes the option of product type select then calls API to generate first call
+app.setProductTypeOption = (productName) => {
+  // change to value
+  const value = app.changeToValue(productName);
+  console.log(`This is the converted value of the product sent from home page ${value}`)
+  // change matching option to selected
+  document.getElementById(value).selected = true; 
+  console.log(`This value of the product type that the option is changed to ${value}`)
+
+  // change category 
+  app.generateProductCategories(value);
+
+  // generate initial API call for product type
+  const url = new URL(app.apiUrl);
+  url.search = new URLSearchParams({
+    product_type: value
+  })
+  fetch(url)
+  .then((response) => {
+    return response.json();
+  })
+  .then((jsonResponse) => {
+     // check if returns empty array
+    if(jsonResponse.length !== 0){
+      // call function to display images
+      app.displayImages(jsonResponse);
+    }else {
+      alert('No results');
+    }
+  })
+}
+
+
+app.generateProductCategories = (result) => {
   const productCategoryArrays = {
     blush: ["powder", "cream"],
     bronzer: ["powder"],
@@ -28,20 +82,11 @@ app.generateProductCategories = () => {
     lip_liner: ["pencil"],
     lipstick: ["lipstick", "lip gloss", "liquid", "stain"]
   }
-    // add event listener to product category select
-    const productType = document.getElementById("productType");
-    productType.addEventListener('change', (event) => {
-      console.log("changed", event)
-      const result = event.target.value;
-
-      //clear previous options added document.querySelectorAll('.classname').forEach(e => e.remove());
-      const optionsToRemove = document.querySelectorAll(".added");
-      optionsToRemove.forEach(event => event.remove());
-
+    
       // go through array that equals value of result to assign options for product category
       const chosenCategory = productCategoryArrays[result];
-     
-      console.log(chosenCategory);
+      console.log(`this is the result sent to app.generateProductCategories ${result}`)
+      console.log(`This is the category chosen inside app.generateProductCategories ${chosenCategory}`);
       // get product category select
       const productCategorySelect = document.getElementById("category");
 
@@ -55,7 +100,7 @@ app.generateProductCategories = () => {
 
         productCategorySelect.appendChild(option);
       })
-    })
+    
 }// end of app.generateProductCategories
 
 
@@ -66,8 +111,20 @@ app.formFilter = () => {
   //get form element
   let formElement = document.querySelector("form");
   const submitButtonElement = document.querySelector("button[type=submit]");
-  console.log(formElement, submitButtonElement);
+  // console.log(formElement, submitButtonElement);
   
+  // add event listener to product category select
+  const productType = document.getElementById("productType");
+  productType.addEventListener('change', (event) => {
+    console.log(`event listener for product type change  ${event}`)
+    const result = event.target.value;
+
+    // //clear previous options 
+    const optionsToRemove = document.querySelectorAll(".added");
+    optionsToRemove.forEach(event => event.remove());
+
+    app.generateProductCategories(result);
+  })
   //add event listener to submit button
   submitButtonElement.addEventListener("click", function(event){
     event.preventDefault();
@@ -101,7 +158,7 @@ app.formFilter = () => {
     if (brandOption !== 0){
       // save value of selected brand in variable
       app.brandSelected = formElement[1][brandOption].value;
-      console.log(app.brandSelected)
+      console.log(`brand selected was ${app.brandSelected}`)
     }else {
       app.brandSelected = '';
     }
@@ -112,25 +169,8 @@ app.formFilter = () => {
     if (categoryOption !== 0){
       // save value of category in variable
       app.productCategoryOption = formElement[2][categoryOption].value;
-      console.log(app.productCategoryOption);
+      console.log(`category selected was ${app.productCategoryOption}`);
     }
-    // if (productCategory === 1) {
-    //   app.productCategoryOption = product_categoryA; 
-
-    // }
-    // else if (productCategory === 2) {
-
-    //   app.productCategoryOption = product_categoryB; 
-
-    // }
-
-    // else if (productCategory === 3) {
-    //   app.productCategoryOption = product_categoryC;
-    // }
-
-    // else{
-    //   app.productCategoryOption = "";
-    // }
 
     //  get selected price range selected by user
     const priceOption = formElement[3].selectedIndex;
@@ -151,11 +191,7 @@ app.formFilter = () => {
       app.priceLessThan = 1000;
     }
 
-
-
- 
-
-    console.log(app.brandSelected, app.priceGreaterThan, app.priceLessThan);
+    // console.log(app.brandSelected, app.priceGreaterThan, app.priceLessThan);
 
     console.log(productTypeOption, brandOption, categoryOption, priceOption);
 
@@ -190,7 +226,7 @@ app.getResults = () => {
     return response.json();
   })
   .then((jsonResponse) => {
-    console.log(jsonResponse);
+    console.log(`jsonresponse in getdata API call on submit ${jsonResponse}`);
 
     // check if returns empty array
     if(jsonResponse.length !== 0){
@@ -231,33 +267,20 @@ app.displayImages = (arrayData) => {
 
     // append the li to the gallery ul
     imagesUl.appendChild(li);
-   
-    img.addEventListener("click", function () {
-      count++;
-      if (count > 0) {
-    
-        document.body.style.backgroundColor = "rgb(5, 5, 49)";
-        li.classList.add("open");
-        img.classList.add("opened");
-      }
-      if (count > 1) {
-    
-        document.body.style.backgroundColor = "rgb(5, 5, 49)";
-        li.classList.remove("open");
-        img.classList.remove("opened")
-        count = 0;
-      }
+
+    li.addEventListener("click", function () {
+      li.classList.toggle("open");
+      img.classList.toggle("opened");
     });
-
   })
-
 }// end of display images
 
 app.init = () => {
-  // 
+  // change product category to match received value from home page
+  app.setProductTypeOption(receivedValue);
+
+  // listen for changes to form
   app.formFilter();
-   // populate product category select
-      app.generateProductCategories();
 }
 
 // call init
