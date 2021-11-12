@@ -892,6 +892,15 @@ img:hover {
   overflow-x: hidden;
   overflow-y: hidden;
 }
+.imageGallery h2 {
+  text-align: center;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.smallImg {
+  height: 450px;
+}
 
 li p {
   display: none;
@@ -922,8 +931,15 @@ li p {
 
 .open p {
   display: block;
-  width: 30%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 45%;
   margin-right: 5%;
+  line-height: 25px;
+}
+
+.open h2 {
+  display: none;
 }
 
 .opened {
