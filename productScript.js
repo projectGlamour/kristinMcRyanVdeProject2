@@ -5,6 +5,10 @@ document.getElementById('productTitleContainer').innerHTML =
 `<h2>Imperial Glamour Products ~ ${receivedValue}`;
 
 
+function pageScroll() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 // namespacing starts
 const app = {};
 
@@ -42,21 +46,28 @@ app.changeToValue = (title) => {
   return text; 
 }
 
-// takes the product type and changes the option of product type select then calls API to generate first call
-app.setProductTypeOption = (productName) => {
-  // change to value
-  const value = app.changeToValue(productName);
-  console.log(`This is the converted value of the product sent from home page ${value}`)
+app.setProductTypeOption = (value) => {
   // change matching option to selected
   document.getElementById(value).selected = true; 
   console.log(`This value of the product type that the option is changed to ${value}`)
-
+  
   // change category 
   app.generateProductCategories(value);
 
+}
+
+// takes the product type from the home page and changes the option of product type select then calls API to generate first call
+app.setInitialProductTypeOption = (productName) => {
+  // change to value
+  const value = app.changeToValue(productName);
+  console.log(`This is the converted value of the product sent from home page ${value}`)
+
+  // change matching option to selected
+  app.setProductTypeOption(value);
+
   // generate initial API call for product type
   app.productTypeApiCall(value);
-}// end of app.setProductTypeOption
+}// end of app.setInitialProductTypeOption
 
 
 app.generateProductCategories = (result) => {
@@ -90,6 +101,7 @@ app.generateProductCategories = (result) => {
   })
 }// end of app.generateProductCategories
 
+
 // API call for product type only
 app.productTypeApiCall = (value) => {
   const url = new URL(app.apiUrl);
@@ -111,7 +123,8 @@ app.productTypeApiCall = (value) => {
   })
 } // end of app.productTypeApiCall
 
-//------------- *** NEW APP *** --------------------
+
+// listen for user changes to selects and call API for changes
 app.listenForSelectChanges = () => {
   //get select elements
   const selectElements = document.querySelectorAll("select");
@@ -123,19 +136,35 @@ app.listenForSelectChanges = () => {
       const result = event.target.classList;
       console.log(`assigning option event listeners to ${result}`);
       
+      // get values of selected options in form
       const typeOptionSelected = document.querySelector("#productType option:checked").value;
+      const brandOptionSelected = document.querySelector("#brand option:checked").value;
+      const categoryOptionSelected = document.querySelector("#category option:checked").value;
+      const priceOptionSelected = document.querySelector("#price option:checked").value;
 
       if (result.contains("productSelect")){
+        // user selected a new product type
         // call API for new product type
         console.log(`includes productSelect`)
         app.productTypeApiCall(typeOptionSelected);
+
+        // change product in header to match selection
+        const nameCapitalized = app.changeToTitle(typeOptionSelected)
+        document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
+
+        // //clear previous category options 
+        const optionsToRemove = document.querySelectorAll(".added");
+        optionsToRemove.forEach(event => event.remove());
+
+        // change the category according to product type
+        app.setProductTypeOption(typeOptionSelected);
+
+        // reset other selects to 0
+        document.getElementById("brand").selectedIndex = 0;
+        document.getElementById("price").selectedIndex = 0;
+      
+
       }else {
-        // get values of selected options in form
-        
-        const brandOptionSelected = document.querySelector("#brand option:checked").value;
-        const categoryOptionSelected = document.querySelector("#category option:checked").value;
-        const priceOptionSelected = document.querySelector("#price option:checked").value;
-        
         console.log(`selected filter other than product`)
 
         let url = new URL(`${app.apiUrl}`);
@@ -238,56 +267,8 @@ app.listenForSelectChanges = () => {
           }
         }
 
-
         console.log(url)
 
-
-        // check for any values of 0
-        // if (typeOptionSelected != 0){
-          // params.set("product_type", typeOptionSelected);
-          // url.append(`+product_type=${typeOptionSelected}`)
-          // url.search = new URLSearchParams({
-          //   product_type: typeOptionSelected
-          // });
-        // };
-        // if (brandOptionSelected != 0){
-          // params.set("brand", brandOptionSelected);
-          // url.append(`+brand=${brandOptionSelected}`)
-          //  url.search = new URLSearchParams({
-          //   brand: brandOptionSelected
-          // });
-        // };
-        // if (categoryOptionSelected != 0){
-          // params.set("product_category", categoryOptionSelected);
-          // url.append(`+product_category=${categoryOptionSelected}`)
-          // url.search = new URLSearchParams({
-          //   product_category: categoryOptionSelected
-          // });
-        // };
-        // if (priceOptionSelected != 0){
-        //   if (priceOptionSelected === "leastExpensive"){
-        //     url.append(`+price_greater_than=0+price_less_than=25`);
-            // params.set("price_greater_than", 0);
-            // params.set("price_less_than", 25);
-            // url.search = new URLSearchParams({
-            //   price_greater_than: 0,
-            //   price_less_than: 25
-            // });
-          // }else{
-          //    url.append(`+price_greater_than=25+price_less_than=1000`);
-            // params.set("price_greater_than", 25);
-            // params.set("price_less_than", 1000);
-            // url.search = new URLSearchParams({
-            //   price_greater_than: 25,
-            //   price_less_than: 1000
-            // });
-        //   };
-        // };
-        // let newUrl = new URL (url, {
-        //   body: params
-        // })
-        // console.log(url, params)
-        
         fetch(url)
         .then((response) => {
           return response.json();
@@ -306,138 +287,6 @@ app.listenForSelectChanges = () => {
   })
 }// end of app.listenForSelectChanges
 
-
-
-// get form element, listen for form submission and assign variables based on user's selections
-app.formFilter = () => {
-  //get form element
-  let formElement = document.querySelector("form");
-  const submitButtonElement = document.querySelector("button[type=submit]");
-  // console.log(formElement, submitButtonElement);
-  
-  // add event listener to product category select
-  const productType = document.getElementById("productType");
-  productType.addEventListener('change', (event) => {
-    console.log(`event listener for product type change  ${event}`)
-    const result = event.target.value;
-
-    // //clear previous options 
-    const optionsToRemove = document.querySelectorAll(".added");
-    optionsToRemove.forEach(event => event.remove());
-
-    app.generateProductCategories(result);
-  })
-  //add event listener to submit button
-  submitButtonElement.addEventListener("click", function(event){
-    event.preventDefault();
-
-    formElement = document.querySelector("form");
-    
-    // clear any images in the gallery
-    const imageList = document.getElementById("ulImages"); 
-    imageList.innerText = '';
-
-    // get product type
-    const productTypeOption = formElement[0].selectedIndex;
-
-    if (productTypeOption !== 0){
-      // save value of selected product type
-      // this will overwrite receivedValue
-      app.productType = formElement[0][productTypeOption].value;
-      // change product name in header to match
-      // *** STRETCH get innerText of selected type
-      // ** make product Capitalized
-      const nameCapitalized = app.changeToTitle(app.productType)
-      document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
-    }
-
-    // get selected brand
-    const brandOption = formElement[1].selectedIndex;
-    //check if brand selected
-    // if no user input option = 0
-    if (brandOption !== 0){
-      // save value of selected brand in variable
-      app.brandSelected = formElement[1][brandOption].value;
-      console.log(`brand selected was ${app.brandSelected}`)
-    }else {
-      app.brandSelected = '';
-    }
-
-    // get product category selected by user
-    const categoryOption = formElement[2].selectedIndex;
-    
-    if (categoryOption !== 0){
-      // save value of category in variable
-      app.productCategoryOption = formElement[2][categoryOption].value;
-      console.log(`category selected was ${app.productCategoryOption}`);
-    }
-
-    //  get selected price range selected by user
-    const priceOption = formElement[3].selectedIndex;
-    //  check which price was selected
-    // if no user selection = 0
-    if (priceOption === 1){
-      // least expensive was selected
-      // assign values for price range
-      app.priceLessThan = 20;
-      app.priceGreaterThan = 0;
-    }else if (priceOption === 2){
-      // most expensive was selected
-      // assign values for price range
-      app.priceGreaterThan = 20;
-      app.priceLessThan = 1000;
-    }else {
-      app.priceGreaterThan = 0;
-      app.priceLessThan = 1000;
-    }
-
-    // console.log(app.brandSelected, app.priceGreaterThan, app.priceLessThan);
-
-    console.log(productTypeOption, brandOption, categoryOption, priceOption);
-
-    if (productTypeOption === 0 && brandOption === 0 && categoryOption === 0 && priceOption === 0 ){
-      alert('Please select a Product type');
-    }else {
-      // call API
-      app.getResults();
-      
-    }
-  })
-} // end of app.formFilter
-
-
-
-// method to take variables with user's selections and send to API
-app.getResults = () => {
-  const url = new URL(app.apiUrl);
-  url.search = new URLSearchParams({
-    // pass in variables from form
-    product_category: app.productCategoryOption,
-    brand: app.brandSelected,
-    price_greater_than: app.priceGreaterThan,
-    price_less_than: app.priceLessThan,
-    name: app.productName,
-    product_type: app.productType
-  })
-
-  // pass new url into fetch
-  fetch(url)
-  .then((response) => {
-    // get response from API and return it
-    return response.json();
-  })
-  .then((jsonResponse) => {
-    console.log(`jsonresponse in getdata API call on submit ${jsonResponse}`);
-
-    // check if returns empty array
-    if(jsonResponse.length !== 0){
-      // call function to display images
-      app.displayImages(jsonResponse);
-    }else {
-      alert('No results');
-    }
-  })
-  } // end of app.getResults
 
 // method to take results from API call and display them on the product page
 app.displayImages = (arrayData) => {
@@ -485,11 +334,11 @@ app.displayImages = (arrayData) => {
 
 app.init = () => {
   // change product category to match received value from home page
-  app.setProductTypeOption(receivedValue);
+  app.setInitialProductTypeOption(receivedValue);
 
+  // listen for user changes to selects
   app.listenForSelectChanges();
-  // listen for changes to form
-  // app.formFilter();
+  
 }
 
 // call init
@@ -497,7 +346,4 @@ app.init();
 
 
 
-function pageScroll() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
