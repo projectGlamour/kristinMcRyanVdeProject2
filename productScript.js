@@ -300,12 +300,14 @@ app.displayImages = (arrayData) => {
   // take the data from the API and iterate through it
   arrayData.forEach((item) => {
     // create a list item element
-    const li = document.createElement('li');
+    const li = document.createElement("li");
    
     // create an image item
-    const img = document.createElement('img');
-    const para = document.createElement('p');
-    const h2heading = document.createElement('h2');
+    const img = document.createElement("img");
+    const div = document.createElement("div");
+    const para = document.createElement("p");
+    const h2heading = document.createElement("h2");
+    const button = document.createElement("button");
 
     // add the content we need to the image element
     img.src = item.api_featured_image;
@@ -316,18 +318,25 @@ app.displayImages = (arrayData) => {
     h2heading.innerText = item.name;
     img.alt = item.description;
     para.innerText = img.alt;
+    div.className = "detail";
+    button.innerHTML = "Close"
+    button.className = "hide";
+    
 
   
      // append the img element to the list item
     li.appendChild(img);
-    li.appendChild(para);
-    li.appendChild(h2heading);
+    li.appendChild(div);
+    div.appendChild(para);
+    div.appendChild(h2heading);
+    div.appendChild(button);
     // append the li to the gallery ul
     imagesUl.appendChild(li);
 
     li.addEventListener("click", function () {
       li.classList.toggle("open");
       img.classList.toggle("opened");
+      button.classList.toggle("close");
     });
   })
 }// end of display images
