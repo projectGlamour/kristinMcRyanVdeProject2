@@ -291,52 +291,17 @@ app.init = () => {
   // listen for changes to form
   app.formFilter();
 }
-
-// call init
-app.init();
-
-
-
-function pageScroll() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-const productSelectedBySelf = document.querySelectorAll (".productTypeClass");
-productSelectedBySelf.forEach(function(item) {
-  item.addEventListener('click', function() {
-    formElement = document.querySelector("form");
-    
-    const imageList = document.getElementById("ulImages"); 
-    imageList.innerText = '';
-
-    const brandOption = formElement[1].selectedIndex;
-    const productTypeOption = formElement[0].selectedIndex;
-
-    if (productTypeOption !== 0 && brandOption === 0){
-      app.productType = formElement[0][productTypeOption].value;
-      app.getResults2();
-    }
-    
-    if (brandOption !== 0 && productTypeOption !== 0){
-      app.brandSelected = formElement[1][brandOption].value;
-      app.productType = formElement[0][productTypeOption].value;
-      app.getResults3();
-
-    }
-
-  
-  });
-});
-  
 app.getResults2 = () => {
   const url = new URL(app.apiUrl);
   url.search = new URLSearchParams({
+    // pass in variables from form
     product_type: app.productType
-    
   })
 
+  // pass new url into fetch
   fetch(url)
   .then((response) => {
+    // get response from API and return it
     return response.json();
   })
   .then((jsonResponse) => {
@@ -350,44 +315,48 @@ app.getResults2 = () => {
       alert('No results');
     }
   })
-}
+  }
   
 
 
 const brandSelectedBySelf = document.querySelectorAll (".brandTypeClass");
-brandSelectedBySelf.forEach(function(item) {
-  item.addEventListener('click', function() {
-    formElement = document.querySelector("form");
-    
-    const imageList = document.getElementById("ulImages"); 
-    imageList.innerText = '';
-
-    const brandOption = formElement[1].selectedIndex;
-    const productTypeOption = formElement[0].selectedIndex;
-    //check if brand selected
-    // if no user input option = 0
-    if (brandOption !== 0 && productTypeOption !== 0){
-      // save value of selected brand in variable
-      app.brandSelected = formElement[1][brandOption].value;
-      app.productType = formElement[0][productTypeOption].value;
-      app.getResults3();
-
-    }
-    
-    else {
-      app.brandSelected = '';
-    }
-    if (brandOption !== 0 && productTypeOption === 0) {
-
-      app.brandSelected = formElement[1][brandOption].value;
-      app.getResults4();
-
-    }
- 
+function lol (){
+  brandSelectedBySelf.forEach(function (item) {
+    item.addEventListener('click', function() {
+      formElement = document.querySelector("form");
+      
+      const imageList = document.getElementById("ulImages"); 
+      imageList.innerText = '';
   
+      const brandOption = formElement[1].selectedIndex;
+      const productTypeOption = formElement[0].selectedIndex;
+      //check if brand selected
+      // if no user input option = 0
+      if (brandOption !== 0 && productTypeOption !== 0){
+        // save value of selected brand in variable
+        app.brandSelected = formElement[1][brandOption].value;
+        app.productType = formElement[0][productTypeOption].value;
+        app.getResults3();
+  
+      }
+      
+      else {
+        app.brandSelected = '';
+      }
+      if (brandOption !== 0 && productTypeOption === 0) {
+  
+        app.brandSelected = formElement[1][brandOption].value;
+        app.getResults4();
+  
+      }
+   
+    
+    });
   });
-});
-  
+}
+
+lol();
+
 app.getResults3 = () => {
   const url = new URL(app.apiUrl);
   url.search = new URLSearchParams({
@@ -439,3 +408,39 @@ app.getResults4 = () => {
     }
   })
   }
+// call init
+app.init();
+
+
+
+function pageScroll() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+const productSelectedBySelf = document.querySelectorAll (".productTypeClass");
+productSelectedBySelf.forEach(function(item) {
+  item.addEventListener('click', function() {
+    formElement = document.querySelector("form");
+    
+    const imageList = document.getElementById("ulImages"); 
+    imageList.innerText = '';
+
+    const brandOption = formElement[1].selectedIndex;
+    const productTypeOption = formElement[0].selectedIndex;
+
+    if (productTypeOption !== 0 && brandOption === 0){
+      app.productType = formElement[0][productTypeOption].value;
+      app.getResults2();
+    }
+    
+    if (brandOption !== 0 && productTypeOption !== 0){
+      app.brandSelected = formElement[1][brandOption].value;
+      app.productType = formElement[0][productTypeOption].value;
+      app.getResults3();
+
+    }
+
+  
+  });
+});
+  
