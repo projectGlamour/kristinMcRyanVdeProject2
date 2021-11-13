@@ -17,6 +17,20 @@ img {
   display: flex;
   flex-direction: column;
 }
+
+// nav style - see aslo _navigation.scss
+nav.product {
+  width: 100%;
+  border: solid gold 2px;
+  border-left: 0;
+  border-right: 0;
+  ul {
+    width: 50%;
+    padding: 15px;
+  }
+}
+
+// header title container
 .productTitleContainer {
   @include Maxsize100;
   display: flex;
@@ -31,22 +45,17 @@ img {
     text-transform: capitalize;
   }
 }
-#productNav {
-  width: 100%;
-  border: solid gold 2px;
-  border-left: 0;
-  border-right: 0;
-  ul {
-    width: 50%;
-    padding: 15px;
-  }
-}
+
 // main styling
+
+.productMain {
+  margin-bottom: 5%;
+}
 
 // form
 form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(266px, 1fr));
   grid-auto-rows: 35px;
   width: 100%;
   gap: 20px 2%;
@@ -103,28 +112,49 @@ form {
     }
   }
 
-  button {
-    margin-left: 2rem;
-    font-family: inherit;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: white;
-    background-color: rgba(56, 56, 109, 0.5);
-    border: 2px solid white;
-    border-radius: 5px;
-    min-width: 9.5rem;
-    transition: background 1s;
-  }
-  button:hover,
-  button:focus {
-    color: rgb(4, 4, 48);
-    background-color: white;
-  }
-}
-.productMain {
-  margin-bottom: 5%;
+  // button {
+  //   margin-left: 2rem;
+  //   font-family: inherit;
+  //   font-weight: bold;
+  //   letter-spacing: 1px;
+  //   color: white;
+  //   background-color: rgba(56, 56, 109, 0.5);
+  //   border: 2px solid white;
+  //   border-radius: 5px;
+  //   min-width: 9.5rem;
+  //   transition: background 1s;
+  // }
+  // button:hover,
+  // button:focus {
+  //   color: rgb(4, 4, 48);
+  //   background-color: white;
+  // }
 }
 
+
+
+// image gallery
+.imageGallery {
+  ul.images {
+    margin: 30px auto;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-auto-rows: minmax(400px, 1fr);
+    gap: 1.5rem;
+    padding: 2%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  
+  h2 {
+    text-align: center;
+    width: 100%;
+    text-transform: capitalize;
+  }
+}
+
+// populated images
 img {
   margin: 0 auto;
   border: 1px solid lightgray;
@@ -139,32 +169,49 @@ img:hover {
   opacity: 0.7;
   transform: scale(1.05);
 }
-// image gallery
-.imageGallery {
-  ul.images {
-    margin: 30px auto;
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: minmax(400px, 1fr);
-    gap: 1.5rem;
-    padding: 2%;
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
 
-  h2 {
-    text-align: center;
-    width: 100%;
-    text-transform: capitalize;
-  }
-}
 .smallImg {
   height: 450px;
 }
+
+
+
 li p {
   display: none;
 }
+
+// for detailed popup of images
+div.detail {
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button{
+    display: none;
+    position: absolute;
+  }
+  button.show {
+    display: block;
+    position: static;
+    align-self: center;
+    width: 6rem;
+    margin-top: 6rem;
+    padding: .3rem;
+    background-color: rgb(254, 246, 231);
+    color: darkblue;
+    border: 2px solid gold;
+    border-radius: 25px;
+    letter-spacing: 1px;
+    transition: background-color 1s;
+  }
+  button.show:hover,
+  button.show:focus {
+    background-color: rgb(242, 196, 111);
+  }
+}
+
 .open {
   position: fixed;
   width: 95%;
@@ -178,10 +225,11 @@ li p {
   justify-content: space-between;
   flex-direction: row;
 }
+
 .open p {
   display: block;
   flex-wrap: wrap;
-  width: 45%;
+  margin-left: 20%;
   margin-right: 5%;
   line-height: 25px;
 }
