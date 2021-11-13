@@ -123,12 +123,15 @@ app.listenForSelectChanges = () => {
       const result = event.target.classList;
       console.log(`assigning option event listeners to ${result}`);
       
+      const typeOptionSelected = document.querySelector("#productType option:checked").value;
+
       if (result.contains("productSelect")){
         // call API for new product type
         console.log(`includes productSelect`)
+        app.productTypeApiCall(typeOptionSelected);
       }else {
         // get values of selected options in form
-        const typeOptionSelected = document.querySelector("#productType option:checked").value;
+        
         const brandOptionSelected = document.querySelector("#brand option:checked").value;
         const categoryOptionSelected = document.querySelector("#category option:checked").value;
         const priceOptionSelected = document.querySelector("#price option:checked").value;
@@ -441,7 +444,7 @@ app.displayImages = (arrayData) => {
   // clear any images in the gallery
     const imageList = document.getElementById("ulImages"); 
     imageList.innerText = '';
-    
+
   // find the images ul and assign to variable
   const imagesUl = document.querySelector("ul.images");
 
