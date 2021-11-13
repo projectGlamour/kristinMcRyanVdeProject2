@@ -55,6 +55,43 @@ app.setProductTypeOption = (productName) => {
   app.generateProductCategories(value);
 
   // generate initial API call for product type
+  app.productTypeApiCall(value);
+}// end of app.setProductTypeOption
+
+
+app.generateProductCategories = (result) => {
+  const productCategoryArrays = {
+    blush: ["powder", "cream"],
+    bronzer: ["powder"],
+    eyebrow: ["penci"],
+    eyeliner: ["liquid", "pencil", "gel", "cream"],
+    eyeshadow: ["pallette", "pencil", "cream"],
+    foundation: ["concealer", "liquid", "contour", "bb cc", "cream", "mineral", "powder", "highlighter"],
+    lip_liner: ["pencil"],
+    lipstick: ["lipstick", "lip gloss", "liquid", "stain"]
+  }
+    
+  // go through product array that equals value of result to assign options for product category
+  const chosenCategory = productCategoryArrays[result];
+  console.log(`this is the result sent to app.generateProductCategories ${result}`)
+  console.log(`This is the category chosen inside app.generateProductCategories ${chosenCategory}`);
+  // get product category select
+  const productCategorySelect = document.getElementById("category");
+
+  // loop through product array to populate category select
+  chosenCategory.forEach((item) => {
+    // create option
+    const option = document.createElement("option");
+    option.classList.add("added", "categoryClass");
+    option.value = item;
+    option.text = item;
+
+    productCategorySelect.appendChild(option);
+  })
+}// end of app.generateProductCategories
+
+// API call for product type only
+app.productTypeApiCall = (value) => {
   const url = new URL(app.apiUrl);
   url.search = new URLSearchParams({
     product_type: value
@@ -72,45 +109,203 @@ app.setProductTypeOption = (productName) => {
       alert('No results');
     }
   })
-}
+} // end of app.productTypeApiCall
+
+//------------- *** NEW APP *** --------------------
+app.listenForSelectChanges = () => {
+  //get select elements
+  const selectElements = document.querySelectorAll("select");
+
+  // loop through selectElements and add event listeners
+  selectElements.forEach((element) => {
+    element.addEventListener("change", (event) => {
+     
+      const result = event.target.classList;
+      console.log(`assigning option event listeners to ${result}`);
+      
+      if (result.contains("productSelect")){
+        // call API for new product type
+        console.log(`includes productSelect`)
+      }else {
+        // get values of selected options in form
+        const typeOptionSelected = document.querySelector("#productType option:checked").value;
+        const brandOptionSelected = document.querySelector("#brand option:checked").value;
+        const categoryOptionSelected = document.querySelector("#category option:checked").value;
+        const priceOptionSelected = document.querySelector("#price option:checked").value;
+        
+        console.log(`selected filter other than product`)
+
+        let url = new URL(`${app.apiUrl}`);
+        // let params = new URLSearchParams(url.search);
+        console.log(typeOptionSelected, brandOptionSelected, categoryOptionSelected, priceOptionSelected)
+
+        if(brandOptionSelected != 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
+          // has brand, category and price selected
+          console.log("has brand, category and price selected")
+          if (priceOptionSelected === "leastExpensive"){
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              brand: brandOptionSelected,
+              product_category: categoryOptionSelected,
+              price_greater_than: 0,
+              price_less_than: 25
+            })
+          }else{
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              brand: brandOptionSelected,
+              product_category: categoryOptionSelected,
+              price_greater_than: 25,
+              price_less_than: 1000
+            })
+          };
+        }else if(brandOptionSelected != 0 && categoryOptionSelected != 0 && priceOptionSelected == 0){
+          // has brand and category selected, no price
+          console.log("has brand and category selected, no price")
+          url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              brand: brandOptionSelected,
+              product_category: categoryOptionSelected
+            })
+        }else if(brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected == 0){
+          // has brand selected, no category or price
+          console.log("has brand selected, no category or price")
+          url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              brand: brandOptionSelected,
+            })
+        }else if(brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected != 0){
+          // has brand and price selected but no category
+          console.log("has brand and price selected but no category")
+          if (priceOptionSelected === "leastExpensive"){
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              brand: brandOptionSelected,
+              price_greater_than: 0,
+              price_less_than: 25
+            })
+          }else{
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              brand: brandOptionSelected,
+              price_greater_than: 25,
+              price_less_than: 1000
+            })
+          };
+        }else if(brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
+          // has category and price selected but no brand
+          console.log("has category and price selected but no brand")
+          if (priceOptionSelected === "leastExpensive"){
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              product_category: categoryOptionSelected,
+              price_greater_than: 0,
+              price_less_than: 25
+            })
+          }else{
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              product_category: categoryOptionSelected,
+              price_greater_than: 25,
+              price_less_than: 1000
+            })
+          }
+        }else if(brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected == 0){
+          // has category, no brand or price
+          console.log("has category, no brand or price")
+          url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              product_category: categoryOptionSelected,
+            })
+        }else if(brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
+          // has price, no brand or category
+          console.log("has price, no brand or category")
+          if (priceOptionSelected === "leastExpensive"){
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              price_greater_than: 0,
+              price_less_than: 25
+            })
+          }else{
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              price_greater_than: 25,
+              price_less_than: 1000
+            })
+          }
+        }
 
 
-app.generateProductCategories = (result) => {
-  const productCategoryArrays = {
-    blush: ["powder", "cream"],
-    bronzer: ["powder"],
-    eyebrow: ["penci"],
-    eyeliner: ["liquid", "pencil", "gel", "cream"],
-    eyeshadow: ["pallette", "pencil", "cream"],
-    foundation: ["concealer", "liquid", "contour", "bb cc", "cream", "mineral", "powder", "highlighter"],
-    lip_liner: ["pencil"],
-    lipstick: ["lipstick", "lip gloss", "liquid", "stain"]
-  }
-    
-      // go through array that equals value of result to assign options for product category
-      const chosenCategory = productCategoryArrays[result];
-      console.log(`this is the result sent to app.generateProductCategories ${result}`)
-      console.log(`This is the category chosen inside app.generateProductCategories ${chosenCategory}`);
-      // get product category select
-      const productCategorySelect = document.getElementById("category");
-
-      // loop through product array to populate category select
-      chosenCategory.forEach((item) => {
-        // create option
-        const option = document.createElement("option");
-        option.classList.add("added");
-        option.value = item;
-        option.text = item;
-
-        productCategorySelect.appendChild(option);
-      })
-    
-}// end of app.generateProductCategories
+        console.log(url)
 
 
+        // check for any values of 0
+        // if (typeOptionSelected != 0){
+          // params.set("product_type", typeOptionSelected);
+          // url.append(`+product_type=${typeOptionSelected}`)
+          // url.search = new URLSearchParams({
+          //   product_type: typeOptionSelected
+          // });
+        // };
+        // if (brandOptionSelected != 0){
+          // params.set("brand", brandOptionSelected);
+          // url.append(`+brand=${brandOptionSelected}`)
+          //  url.search = new URLSearchParams({
+          //   brand: brandOptionSelected
+          // });
+        // };
+        // if (categoryOptionSelected != 0){
+          // params.set("product_category", categoryOptionSelected);
+          // url.append(`+product_category=${categoryOptionSelected}`)
+          // url.search = new URLSearchParams({
+          //   product_category: categoryOptionSelected
+          // });
+        // };
+        // if (priceOptionSelected != 0){
+        //   if (priceOptionSelected === "leastExpensive"){
+        //     url.append(`+price_greater_than=0+price_less_than=25`);
+            // params.set("price_greater_than", 0);
+            // params.set("price_less_than", 25);
+            // url.search = new URLSearchParams({
+            //   price_greater_than: 0,
+            //   price_less_than: 25
+            // });
+          // }else{
+          //    url.append(`+price_greater_than=25+price_less_than=1000`);
+            // params.set("price_greater_than", 25);
+            // params.set("price_less_than", 1000);
+            // url.search = new URLSearchParams({
+            //   price_greater_than: 25,
+            //   price_less_than: 1000
+            // });
+        //   };
+        // };
+        // let newUrl = new URL (url, {
+        //   body: params
+        // })
+        // console.log(url, params)
+        
+        fetch(url)
+        .then((response) => {
+          return response.json();
+        })
+      .then((jsonResponse) => {
+        // check if returns empty array
+        if(jsonResponse.length !== 0){
+          // call function to display images
+          app.displayImages(jsonResponse);
+        }else {
+          alert('No results');
+        }
+        })
+      }
+    })
+  })
+}// end of app.listenForSelectChanges
 
 
-// method to get form element, listen for form submission and assign variables based on user's selections
+
+// get form element, listen for form submission and assign variables based on user's selections
 app.formFilter = () => {
   //get form element
   let formElement = document.querySelector("form");
@@ -150,10 +345,7 @@ app.formFilter = () => {
       // *** STRETCH get innerText of selected type
       // ** make product Capitalized
       const nameCapitalized = app.changeToTitle(app.productType)
-      document.getElementById('productTitleContainer').innerHTML = 
-`<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
-
-     
+      document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
     }
 
     // get selected brand
@@ -246,6 +438,10 @@ app.getResults = () => {
 
 // method to take results from API call and display them on the product page
 app.displayImages = (arrayData) => {
+  // clear any images in the gallery
+    const imageList = document.getElementById("ulImages"); 
+    imageList.innerText = '';
+    
   // find the images ul and assign to variable
   const imagesUl = document.querySelector("ul.images");
 
@@ -288,8 +484,9 @@ app.init = () => {
   // change product category to match received value from home page
   app.setProductTypeOption(receivedValue);
 
+  app.listenForSelectChanges();
   // listen for changes to form
-  app.formFilter();
+  // app.formFilter();
 }
 
 // call init
@@ -301,141 +498,3 @@ function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-const productSelectedBySelf = document.querySelectorAll (".productTypeClass");
-productSelectedBySelf.forEach(function(item) {
-  item.addEventListener('click', function() {
-    formElement = document.querySelector("form");
-    
-    const imageList = document.getElementById("ulImages"); 
-    imageList.innerText = '';
-
-    const brandOption = formElement[1].selectedIndex;
-    const productTypeOption = formElement[0].selectedIndex;
-
-    if (productTypeOption !== 0 && brandOption === 0){
-      app.productType = formElement[0][productTypeOption].value;
-      app.getResults2();
-    }
-    
-    if (brandOption !== 0 && productTypeOption !== 0){
-      app.brandSelected = formElement[1][brandOption].value;
-      app.productType = formElement[0][productTypeOption].value;
-      app.getResults3();
-
-    }
-
-  
-  });
-});
-  
-app.getResults2 = () => {
-  const url = new URL(app.apiUrl);
-  url.search = new URLSearchParams({
-    product_type: app.productType
-    
-  })
-
-  fetch(url)
-  .then((response) => {
-    return response.json();
-  })
-  .then((jsonResponse) => {
-    console.log(`jsonresponse in getdata API call on submit ${jsonResponse}`);
-
-    // check if returns empty array
-    if(jsonResponse.length !== 0){
-      // call function to display images
-      app.displayImages(jsonResponse);
-    }else {
-      alert('No results');
-    }
-  })
-}
-  
-
-
-const brandSelectedBySelf = document.querySelectorAll (".brandTypeClass");
-brandSelectedBySelf.forEach(function(item) {
-  item.addEventListener('click', function() {
-    formElement = document.querySelector("form");
-    
-    const imageList = document.getElementById("ulImages"); 
-    imageList.innerText = '';
-
-    const brandOption = formElement[1].selectedIndex;
-    const productTypeOption = formElement[0].selectedIndex;
-    //check if brand selected
-    // if no user input option = 0
-    if (brandOption !== 0 && productTypeOption !== 0){
-      // save value of selected brand in variable
-      app.brandSelected = formElement[1][brandOption].value;
-      app.productType = formElement[0][productTypeOption].value;
-      app.getResults3();
-
-    }
-    
-    else {
-      app.brandSelected = '';
-    }
-    if (brandOption !== 0 && productTypeOption === 0) {
-
-      app.brandSelected = formElement[1][brandOption].value;
-      app.getResults4();
-
-    }
- 
-  
-  });
-});
-  
-app.getResults3 = () => {
-  const url = new URL(app.apiUrl);
-  url.search = new URLSearchParams({
-    
-    brand: app.brandSelected,
-    product_type: app.productType
-  })
-
-  fetch(url)
-  .then((response) => {
-    return response.json();
-  })
-  .then((jsonResponse) => {
-    console.log(`jsonresponse in getdata API call on submit ${jsonResponse}`);
-
-    // check if returns empty array
-    if(jsonResponse.length !== 0){
-      // call function to display images
-      app.displayImages(jsonResponse);
-    }else {
-      alert('No results');
-    }
-  })
-}
-  
-
-
-app.getResults4 = () => {
-  const url = new URL(app.apiUrl);
-  url.search = new URLSearchParams({
-    
-    brand: app.brandSelected
-
-  })
-
-  fetch(url)
-  .then((response) => {
-    return response.json();
-  })
-  .then((jsonResponse) => {
-    console.log(`jsonresponse in getdata API call on submit ${jsonResponse}`);
-
-    // check if returns empty array
-    if(jsonResponse.length !== 0){
-      // call function to display images
-      app.displayImages(jsonResponse);
-    }else {
-      alert('No results');
-    }
-  })
-  }

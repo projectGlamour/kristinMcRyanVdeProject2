@@ -34,8 +34,8 @@
   
       <div class="selection">
         <label for="productType" class="sr-only">Select a brand</label>
-        <select name="productType" id="productType" class="customSelect">
-          <option value="0" id ="productTypeHeader">Product Type: </option>
+        <select name="productType" id="productType" class="customSelect productSelect">
+          <option class="productOption" value="0" id ="productTypeHeader">Product Type: </option>
           <option class = "productTypeClass" value="lipstick" id="lipstick" class="productOption">Lipstick</option>
           <option class = "productTypeClass" value="lip_liner" id="lip_liner" class="productOption">Lip Liner</option>
           <option class = "productTypeClass" value="foundation" id="foundation" class="productOption">Foundation</option>
@@ -48,24 +48,24 @@
 
       <div class="selection">
         <label for="brand" class="sr-only">Select a brand</label>
-        <select name="brand" id="brand" class="customSelect">
-          <option value="0" id ="brandHeader">Brand: </option>
-            <option class = "brandTypeClass" value="annabelle" id="brand1">Annabelle</option>
-            <option class = "brandTypeClass" value="clinique" id="brand2">Clinique</option>
-            <option class = "brandTypeClass" value="covergirl" id="brand3">Covergirl</option>
-            <option class = "brandTypeClass" value="l'oreal" id="brand4">L'oreal</option>
-            <option class = "brandTypeClass" value="maybelline" id="brand5">Maybelline</option>
-            <option class = "brandTypeClass" value="revlon" id="brand6">Revlon</option>
-            <option class = "brandTypeClass" value="smashbox" id="brand7">Smashbox</option>
+        <select name="brand" id="brand" class="customSelect brandSelect">
+          <option class = "brandTypeClass" value="0" id ="brandHeader">Brand: </option>
+          <option class = "brandTypeClass" value="annabelle" id="brand1">Annabelle</option>
+          <option class = "brandTypeClass" value="clinique" id="brand2">Clinique</option>
+          <option class = "brandTypeClass" value="covergirl" id="brand3">Covergirl</option>
+          <option class = "brandTypeClass" value="l'oreal" id="brand4">L'oreal</option>
+          <option class = "brandTypeClass" value="maybelline" id="brand5">Maybelline</option>
+          <option class = "brandTypeClass" value="revlon" id="brand6">Revlon</option>
+          <option class = "brandTypeClass" value="smashbox" id="brand7">Smashbox</option>
         </select>
       </div>
  
   
     <!-- category -->
     <div class="selection">
-      <label for="brand" class="sr-only">Select a product category</label>
-      <select name="category" id="category" class="customSelect">
-        <option value="category"> Product Category:</option>
+      <label for="category" class="sr-only">Select a product category</label>
+      <select name="category" id="category" class="customSelect categorySelect">
+        <option class="categoryClass" value="0"> Product Category:</option>
         <!-- <option id="choiceA" value=""></option>
         <option id="choiceB" value=""></option>
         <option id="choiceC" value=""></option> -->
@@ -75,12 +75,12 @@
     <!-- price -->
     <div class="selection">
       <label for="price" class="sr-only">Select a price range</label>
-      <select name="price" id="price" class="customSelect">
-        <option value="price">Price:</option>
-        <option value="leastExpensive">
+      <select name="price" id="price" class="customSelect priceSelect">
+        <option class="priceClass" value="0">Price:</option>
+        <option class="priceClass" value="leastExpensive">
           25 & Under
         </option>
-        <option value="mostExpensive">
+        <option class="priceClass" value="mostExpensive">
           25 & Over
         </option>
       </select>
