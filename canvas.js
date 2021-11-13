@@ -45,14 +45,6 @@ const mouse = {
   y: innerHeight / 2
 }
 
-
-addEventListener('resize', () => {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-
-  init()
-});
-
 class Particle {
   constructor(x, y, radius1, color) {
     this.x = x
