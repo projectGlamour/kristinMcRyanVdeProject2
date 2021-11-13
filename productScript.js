@@ -350,9 +350,6 @@ app.init = () => {
   
 }
 
+
 // call init
 app.init();
-
-
-
-
