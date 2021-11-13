@@ -364,6 +364,7 @@ nav.product {
       -ms-flex-pack: end;
           justify-content: flex-end;
   background-color: #070707;
+  margin-top: 1%;
 }
 
 .home ul,
@@ -401,6 +402,7 @@ nav.product {
   border-radius: 25px;
   color: white;
   background-color: #171717;
+  margin: 0 1%;
 }
 
 .home ul a,
@@ -753,17 +755,6 @@ img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-nav.product {
-  width: 100%;
-  border: solid gold 2px;
-  border-left: 0;
-  border-right: 0;
-}
-nav.product ul {
-  width: 50%;
-  padding: 15px;
 }
 
 .productTitleContainer {

@@ -40,6 +40,7 @@ nav.product {
   display: flex;
   justify-content: flex-end;
   background-color: rgb(7, 7, 7);
+  margin-top: 1%;
 }
 
 //poop
@@ -55,6 +56,7 @@ nav.product {
   align-content: center;
 }
 
+
 .home li,
 .product li {
   border: solid gold 2px;
@@ -68,6 +70,7 @@ nav.product {
   border-radius: 25px;
   color: white;
   background-color: #171717;
+  margin: 0 1%;
 }
 
 .home ul a,
@@ -93,6 +96,7 @@ nav.product {
   .home ul,
   .product ul {
     width: 100%;
+   
   }
 }
 

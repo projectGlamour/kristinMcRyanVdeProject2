@@ -18,17 +18,6 @@ img {
   flex-direction: column;
 }
 
-// nav style - see aslo _navigation.scss
-nav.product {
-  width: 100%;
-  border: solid gold 2px;
-  border-left: 0;
-  border-right: 0;
-  ul {
-    width: 50%;
-    padding: 15px;
-  }
-}
 
 // header title container
 .productTitleContainer {
@@ -112,23 +101,6 @@ form {
     }
   }
 
-  // button {
-  //   margin-left: 2rem;
-  //   font-family: inherit;
-  //   font-weight: bold;
-  //   letter-spacing: 1px;
-  //   color: white;
-  //   background-color: rgba(56, 56, 109, 0.5);
-  //   border: 2px solid white;
-  //   border-radius: 5px;
-  //   min-width: 9.5rem;
-  //   transition: background 1s;
-  // }
-  // button:hover,
-  // button:focus {
-  //   color: rgb(4, 4, 48);
-  //   background-color: white;
-  // }
 }
 
 

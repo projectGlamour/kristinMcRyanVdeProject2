@@ -74,12 +74,11 @@ app.generateProductCategories = (result) => {
   const productCategoryArrays = {
     blush: ["powder", "cream"],
     bronzer: ["powder"],
-    eyebrow: ["penci"],
     eyeliner: ["liquid", "pencil", "gel", "cream"],
     eyeshadow: ["pallette", "pencil", "cream"],
     foundation: ["concealer", "liquid", "contour", "bb cc", "cream", "mineral", "powder", "highlighter"],
     lip_liner: ["pencil"],
-    lipstick: ["lipstick", "lip gloss", "liquid", "stain"]
+    lipstick: ["lipstick", "lip gloss", "liquid"]
   }
     
   // go through product array that equals value of result to assign options for product category
