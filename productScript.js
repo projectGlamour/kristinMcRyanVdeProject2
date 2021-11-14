@@ -46,16 +46,6 @@ app.changeToValue = (title) => {
   return text; 
 }
 
-app.setProductTypeOption = (value) => {
-  // change matching option to selected
-  document.getElementById(value).selected = true; 
-  console.log(`This value of the product type that the option is changed to ${value}`)
-  
-  // change category 
-  app.generateProductCategories(value);
-
-}
-
 // takes the product type from the home page and changes the option of product type select then calls API to generate first call
 app.setInitialProductTypeOption = (productName) => {
   // change to value
@@ -63,10 +53,17 @@ app.setInitialProductTypeOption = (productName) => {
   console.log(`This is the converted value of the product sent from home page ${value}`)
 
   // change matching option to selected
-  app.setProductTypeOption(value);
+  document.getElementById(value).selected = true; 
+
+  // change category 
+  app.generateProductCategories(value);
 
   // generate initial API call for product type
-  app.productTypeApiCall(value);
+  const url = new URL (app.apiUrl);
+  url.search = new URLSearchParams({
+        product_type: value
+      })
+  app.apiCall(url);
 }// end of app.setInitialProductTypeOption
 
 
@@ -75,7 +72,7 @@ app.generateProductCategories = (result) => {
     blush: ["powder", "cream"],
     bronzer: ["powder"],
     eyeliner: ["liquid", "pencil", "gel", "cream"],
-    eyeshadow: ["pallette", "pencil", "cream"],
+    eyeshadow: ["palette", "pencil", "cream"],
     foundation: ["concealer", "liquid", "contour", "bb cc", "cream", "mineral", "powder", "highlighter"],
     lip_liner: ["pencil"],
     lipstick: ["lipstick", "lip gloss", "liquid"]
@@ -101,12 +98,8 @@ app.generateProductCategories = (result) => {
 }// end of app.generateProductCategories
 
 
-// API call for product type only
-app.productTypeApiCall = (value) => {
-  const url = new URL(app.apiUrl);
-  url.search = new URLSearchParams({
-    product_type: value
-  })
+// API call 
+app.apiCall = (url) => {
   fetch(url)
   .then((response) => {
     return response.json();
@@ -120,13 +113,34 @@ app.productTypeApiCall = (value) => {
       alert('No results');
     }
   })
-} // end of app.productTypeApiCall
+} // end of app.apiCall
+
+// changes product category if user changes product type
+app.listenForProductTypeChange = () => {
+  const typeSelect = document.getElementById("productType");
+
+  typeSelect.addEventListener("change", () => {
+    const typeOptionSelected = document.querySelector("#productType option:checked").value;
+
+    //clear previous category options 
+    const optionsToRemove = document.querySelectorAll(".added");
+    optionsToRemove.forEach(event => event.remove());
+
+    // change the category according to product type
+    if (typeOptionSelected != 0){
+      app.generateProductCategories(typeOptionSelected);
+    }
+  })
+}
+
 
 
 // listen for user changes to selects and call API for changes
 app.listenForSelectChanges = () => {
   //get select elements
   const selectElements = document.querySelectorAll("select");
+
+  const url = new URL(app.apiUrl);
 
   // loop through selectElements and add event listeners
   selectElements.forEach((element) => {
@@ -141,37 +155,41 @@ app.listenForSelectChanges = () => {
       const categoryOptionSelected = document.querySelector("#category option:checked").value;
       const priceOptionSelected = document.querySelector("#price option:checked").value;
 
-      if (result.contains("productSelect")){
+      if (typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected == 0 && priceOptionSelected == 0){
         // user selected a new product type
         // call API for new product type
         console.log(`includes productSelect`)
-        app.productTypeApiCall(typeOptionSelected);
+        url.search = new URLSearchParams({
+          product_type: typeOptionSelected
+        })
+        app.apiCall(url);
 
         // change product in header to match selection
         const nameCapitalized = app.changeToTitle(typeOptionSelected)
         document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
-
-        // //clear previous category options 
-        const optionsToRemove = document.querySelectorAll(".added");
-        optionsToRemove.forEach(event => event.remove());
-
-        // change the category according to product type
-        app.setProductTypeOption(typeOptionSelected);
 
         // reset other selects to 0
         document.getElementById("brand").selectedIndex = 0;
         document.getElementById("price").selectedIndex = 0;
       
 
+      }else if (typeOptionSelected == 0 && brandOptionSelected == 0 && categoryOptionSelected == 0 && priceOptionSelected == 0) {
+        // searching ALL products
+        app.apiCall(url);
+
+        // change name in header to be all
+        const nameCapitalized = app.changeToTitle(brandOptionSelected)
+        document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ All`;
+
       }else {
+        // product type selected with other filters
         console.log(`selected filter other than product`)
 
-        let url = new URL(`${app.apiUrl}`);
         // let params = new URLSearchParams(url.search);
         console.log(typeOptionSelected, brandOptionSelected, categoryOptionSelected, priceOptionSelected)
 
-        if(brandOptionSelected != 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
-          // has brand, category and price selected
+        if(typeOptionSelected != 0 && brandOptionSelected != 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
+          // has product type, brand, category and price selected
           console.log("has brand, category and price selected")
           if (priceOptionSelected === "leastExpensive"){
             url.search = new URLSearchParams({
@@ -190,23 +208,23 @@ app.listenForSelectChanges = () => {
               price_less_than: 1000
             })
           };
-        }else if(brandOptionSelected != 0 && categoryOptionSelected != 0 && priceOptionSelected == 0){
-          // has brand and category selected, no price
+        }else if(typeOptionSelected != 0 && brandOptionSelected != 0 && categoryOptionSelected != 0 && priceOptionSelected == 0){
+          // has type, brand and category selected, no price
           console.log("has brand and category selected, no price")
           url.search = new URLSearchParams({
               product_type: typeOptionSelected,
               brand: brandOptionSelected,
               product_category: categoryOptionSelected
             })
-        }else if(brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected == 0){
-          // has brand selected, no category or price
+        }else if(typeOptionSelected != 0 && brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected == 0){
+          // has type, brand selected, no category or price
           console.log("has brand selected, no category or price")
           url.search = new URLSearchParams({
               product_type: typeOptionSelected,
               brand: brandOptionSelected,
             })
-        }else if(brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected != 0){
-          // has brand and price selected but no category
+        }else if(typeOptionSelected != 0 && brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected != 0){
+          // has type, brand and price selected but no category
           console.log("has brand and price selected but no category")
           if (priceOptionSelected === "leastExpensive"){
             url.search = new URLSearchParams({
@@ -223,8 +241,8 @@ app.listenForSelectChanges = () => {
               price_less_than: 1000
             })
           };
-        }else if(brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
-          // has category and price selected but no brand
+        }else if(typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
+          // has type, category and price selected but no brand
           console.log("has category and price selected but no brand")
           if (priceOptionSelected === "leastExpensive"){
             url.search = new URLSearchParams({
@@ -241,15 +259,15 @@ app.listenForSelectChanges = () => {
               price_less_than: 1000
             })
           }
-        }else if(brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected == 0){
-          // has category, no brand or price
+        }else if(typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected == 0){
+          // has type, category, no brand or price
           console.log("has category, no brand or price")
           url.search = new URLSearchParams({
               product_type: typeOptionSelected,
               product_category: categoryOptionSelected,
             })
-        }else if(brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
-          // has price, no brand or category
+        }else if(typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
+          // has type, price, no brand or category
           console.log("has price, no brand or category")
           if (priceOptionSelected === "leastExpensive"){
             url.search = new URLSearchParams({
@@ -264,23 +282,19 @@ app.listenForSelectChanges = () => {
               price_less_than: 1000
             })
           }
+        }else if (typeOptionSelected == 0 && brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected == 0) {
+        // searching by brand ONLY
+        url.search = new URLSearchParams({
+          brand: brandOptionSelected
+        });
+        // change name in header to match brand selection
+        const nameCapitalized = app.changeToTitle(brandOptionSelected)
+        document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
         }
 
         console.log(url)
-
-        fetch(url)
-        .then((response) => {
-          return response.json();
-        })
-      .then((jsonResponse) => {
-        // check if returns empty array
-        if(jsonResponse.length !== 0){
-          // call function to display images
-          app.displayImages(jsonResponse);
-        }else {
-          alert('No results');
-        }
-        })
+        
+        app.apiCall(url);
       }
     })
   })
@@ -352,6 +366,9 @@ app.init = () => {
 
   // listen for user changes to selects
   app.listenForSelectChanges();
+
+  // listen for changes to product type
+  app.listenForProductTypeChange();
   
 }
 
