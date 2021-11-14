@@ -40,6 +40,7 @@ nav.product {
   display: flex;
   justify-content: flex-end;
   background-color: rgb(7, 7, 7);
+  
 }
 
 //poop
@@ -55,6 +56,11 @@ nav.product {
   align-content: center;
 }
 
+.product ul{
+  padding-top: 1rem;
+}
+
+
 .home li,
 .product li {
   border: solid gold 2px;
@@ -68,6 +74,7 @@ nav.product {
   border-radius: 25px;
   color: white;
   background-color: #171717;
+  margin: 0 1%;
 }
 
 .home ul a,
@@ -93,15 +100,14 @@ nav.product {
   .home ul,
   .product ul {
     width: 100%;
+   
   }
 }
 
 @media only screen and (max-width: 625px){
   nav.product ul {
     flex-wrap: wrap;
-    margin-top: 20px;
     li {
-      
       margin-bottom: 20px;
     }
   }

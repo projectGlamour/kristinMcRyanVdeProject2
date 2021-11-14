@@ -74,12 +74,11 @@ app.generateProductCategories = (result) => {
   const productCategoryArrays = {
     blush: ["powder", "cream"],
     bronzer: ["powder"],
-    eyebrow: ["penci"],
     eyeliner: ["liquid", "pencil", "gel", "cream"],
     eyeshadow: ["pallette", "pencil", "cream"],
     foundation: ["concealer", "liquid", "contour", "bb cc", "cream", "mineral", "powder", "highlighter"],
     lip_liner: ["pencil"],
-    lipstick: ["lipstick", "lip gloss", "liquid", "stain"]
+    lipstick: ["lipstick", "lip gloss", "liquid"]
   }
     
   // go through product array that equals value of result to assign options for product category
@@ -320,15 +319,15 @@ app.displayImages = (arrayData) => {
     para.innerText = img.alt;
     div.className = "detail";
     button.innerHTML = "Close"
-    button.className = "hide";
+    
     
 
   
      // append the img element to the list item
     li.appendChild(img);
+    li.appendChild(h2heading);
     li.appendChild(div);
     div.appendChild(para);
-    div.appendChild(h2heading);
     div.appendChild(button);
     // append the li to the gallery ul
     imagesUl.appendChild(li);
@@ -336,7 +335,7 @@ app.displayImages = (arrayData) => {
     li.addEventListener("click", function () {
       li.classList.toggle("open");
       img.classList.toggle("opened");
-      button.classList.toggle("close");
+      button.classList.toggle("show");
     });
   })
 }// end of display images
