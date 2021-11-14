@@ -38,9 +38,10 @@
 // product nav
 nav.product {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   background-color: rgb(7, 7, 7);
-  
+  border-bottom: solid gold 2px;
+  padding: 0.5%;
 }
 
 //poop
@@ -55,11 +56,6 @@ nav.product {
   margin: 0 0;
   align-content: center;
 }
-
-.product ul{
-  padding-top: 1rem;
-}
-
 
 .home li,
 .product li {
@@ -100,11 +96,10 @@ nav.product {
   .home ul,
   .product ul {
     width: 100%;
-   
   }
 }
 
-@media only screen and (max-width: 625px){
+@media only screen and (max-width: 625px) {
   nav.product ul {
     flex-wrap: wrap;
     li {

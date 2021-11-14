@@ -6,9 +6,20 @@ canvas.height = window.innerHeight;
 canvas.style.backgroundColor = "rgb(5, 5, 49)";
 canvas.style.zIndex = "1";
 
+
+
+window.addEventListener('resize', canvasresize);
+
+canvasresize();
+function canvasresize(){
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
 let radius = 8;
 let radians123 = 0.0007;
-let numberofitems = 400;
+let numberofitems = 1000;
 
 const darkModeOnBttn = document.querySelector("#first");
 const darkModeOffBttn = document.querySelector("#second");
@@ -21,7 +32,7 @@ darkModeOnBttn.addEventListener("click", function () {
   canvas.style.backgroundColor = "black";
   colors = ['lightblue', 'white', 'gold', 'yellow'];
   radius = 9;
-  numberofitems = 1000;
+  numberofitems = 1600;
   radians123 = 0.001;
   init();
 });
@@ -72,8 +83,8 @@ let particles
 function init() {
     particles = []
     for (let i = 0; i < numberofitems; i++) {
-      const canvasWidth = canvas.width + 900
-      const canvasHeight = canvas.height + 900
+      const canvasWidth = canvas.width + 1900
+      const canvasHeight = canvas.height + 1900
       let x = Math.random() * canvasWidth - canvasWidth / 2 
       let y = Math.random() * canvasHeight - canvasHeight / 2
       let radius1 = radius * Math.random();
@@ -108,16 +119,19 @@ animate()
 const mouseTarget = document.getElementById("aboutIntroduction");
 
 mouseTarget.addEventListener('mouseenter', () => {
-  const roundimage1 = document.getElementById("roundimage");
-  roundimage1.style.transform = "translate(-25%, 0)";
+  const wrapperAnimation = document.getElementById("wrapperOpacityAnime");
+  const wrapperAnimation2 = document.getElementById("wrapperOpacityAnime2");
+  wrapperAnimation.style.animation = "slideinLeft 6s 1, slidein 4s 1";
+  wrapperAnimation2.style.animation = "slideinRight 6s 1, slidein 4s 1";
 })
 
 mouseTarget.addEventListener('mouseleave', () => {
-  const roundimage1 = document.getElementById("roundimage");
-  roundimage1.style.transform = "translate(105%, 0)";
+  const wrapperAnimation = document.getElementById("wrapperOpacityAnime");
+  const wrapperAnimation2 = document.getElementById("wrapperOpacityAnime2");
+  wrapperAnimation.style.animation = "slideinLeftReverse 6s 1, slideinout 4s 1";
+  wrapperAnimation2.style.animation = "slideinRightReverse 6s 1, slideinout 4s 1";
 });
 
 function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-//kjji

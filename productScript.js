@@ -306,6 +306,8 @@ app.displayImages = (arrayData) => {
     const div = document.createElement("div");
     const para = document.createElement("p");
     const h2heading = document.createElement("h2");
+    const h3heading = document.createElement("h3");
+    const h4heading = document.createElement("h4");
     const button = document.createElement("button");
 
     // add the content we need to the image element
@@ -315,6 +317,8 @@ app.displayImages = (arrayData) => {
     li.height = "450";
     li.className = "smallImg";
     h2heading.innerText = item.name;
+    h3heading.innerText = item.name;
+    h4heading.innerText = item.brand; 
     img.alt = item.description;
     para.innerText = img.alt;
     div.className = "detail";
@@ -327,6 +331,8 @@ app.displayImages = (arrayData) => {
     li.appendChild(img);
     li.appendChild(h2heading);
     li.appendChild(div);
+    div.appendChild(h3heading);
+    div.appendChild(h4heading);
     div.appendChild(para);
     div.appendChild(button);
     // append the li to the gallery ul
