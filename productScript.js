@@ -107,25 +107,6 @@ app.apiCall = (url) => {
   })
 } // end of app.apiCall
 
-// changes product category if user changes product type
-app.listenForProductTypeChange = () => {
-  const typeSelect = document.getElementById("productType");
-
-  typeSelect.addEventListener("change", () => {
-    const typeOptionSelected = document.querySelector("#productType option:checked").value;
-
-    //clear previous category options 
-    const optionsToRemove = document.querySelectorAll(".added");
-    optionsToRemove.forEach(event => event.remove());
-
-    // change the category according to product type
-    if (typeOptionSelected != 0){
-      app.generateProductCategories(typeOptionSelected);
-    }
-  })
-}
-
-
 
 // listen for user changes to selects and call API for changes
 app.listenForSelectChanges = () => {
@@ -138,14 +119,26 @@ app.listenForSelectChanges = () => {
   selectElements.forEach((element) => {
     element.addEventListener("change", (event) => {
      
-      const result = event.target.classList;
-      
       // get values of selected options in form
       const typeOptionSelected = document.querySelector("#productType option:checked").value;
       const brandOptionSelected = document.querySelector("#brand option:checked").value;
       const categoryOptionSelected = document.querySelector("#category option:checked").value;
       const priceOptionSelected = document.querySelector("#price option:checked").value;
+      
+      
+      const result = event.target.classList;
+        
+      if (result.contains("productSelect")){
+        //clear previous category options 
+        const optionsToRemove = document.querySelectorAll(".added");
+        optionsToRemove.forEach(event => event.remove());
 
+        // change the category according to product type
+        if (typeOptionSelected != 0){
+          app.generateProductCategories(typeOptionSelected);
+        }
+      }
+   
       if (typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected == 0 && priceOptionSelected == 0){
         // user selected a new product type
         // call API for new product type
@@ -167,9 +160,9 @@ app.listenForSelectChanges = () => {
         // searching ALL products
         app.apiCall(url);
 
-        // change name in header to be all
+        // change header
         const nameCapitalized = app.changeToTitle(brandOptionSelected)
-        document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ All`;
+        document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ All</h2>`;
 
       }else {
         // product type selected with other filters
@@ -342,9 +335,6 @@ app.init = () => {
 
   // listen for user changes to selects
   app.listenForSelectChanges();
-
-  // listen for changes to product type
-  app.listenForProductTypeChange();
   
 }
 
