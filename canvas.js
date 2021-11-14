@@ -19,7 +19,7 @@ function canvasresize(){
 
 let radius = 8;
 let radians123 = 0.0007;
-let numberofitems = 400;
+let numberofitems = 1000;
 
 const darkModeOnBttn = document.querySelector("#first");
 const darkModeOffBttn = document.querySelector("#second");
@@ -32,7 +32,7 @@ darkModeOnBttn.addEventListener("click", function () {
   canvas.style.backgroundColor = "black";
   colors = ['lightblue', 'white', 'gold', 'yellow'];
   radius = 9;
-  numberofitems = 1000;
+  numberofitems = 1600;
   radians123 = 0.001;
   init();
 });
@@ -119,16 +119,19 @@ animate()
 const mouseTarget = document.getElementById("aboutIntroduction");
 
 mouseTarget.addEventListener('mouseenter', () => {
-  const roundimage1 = document.getElementById("roundimage");
-  roundimage1.style.transform = "translate(-25%, 0)";
+  const wrapperAnimation = document.getElementById("wrapperOpacityAnime");
+  const wrapperAnimation2 = document.getElementById("wrapperOpacityAnime2");
+  wrapperAnimation.style.animation = "slideinLeft 6s 1, slidein 4s 1";
+  wrapperAnimation2.style.animation = "slideinRight 6s 1, slidein 4s 1";
 })
 
 mouseTarget.addEventListener('mouseleave', () => {
-  const roundimage1 = document.getElementById("roundimage");
-  roundimage1.style.transform = "translate(105%, 0)";
+  const wrapperAnimation = document.getElementById("wrapperOpacityAnime");
+  const wrapperAnimation2 = document.getElementById("wrapperOpacityAnime2");
+  wrapperAnimation.style.animation = "slideinLeftReverse 6s 1, slideinout 4s 1";
+  wrapperAnimation2.style.animation = "slideinRightReverse 6s 1, slideinout 4s 1";
 });
 
 function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-//kjji

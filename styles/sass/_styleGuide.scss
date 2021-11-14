@@ -52,10 +52,21 @@ body {
 h1 {
   font-size: clamp(5rem, 4.5558rem + 2.4675vw, 6.9rem);
   text-align: center;
-  color: var(--color-h1);
-  z-index: 998;
+  background-image: url("../assets/gifs/gif2.gif");
+  background-size: cover;
+  color: transparent;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
 }
 
+p {
+  font-family: "Lato", sans-serif;
+  letter-spacing: 1px;
+  line-height: 29px;
+  font-size: clamp(0.8rem, 0.5558rem + 0.4675vw, 1rem);
+}
 footer {
   width: 100%;
 }
