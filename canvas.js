@@ -6,6 +6,17 @@ canvas.height = window.innerHeight;
 canvas.style.backgroundColor = "rgb(5, 5, 49)";
 canvas.style.zIndex = "1";
 
+
+
+window.addEventListener('resize', canvasresize);
+
+canvasresize();
+function canvasresize(){
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
 let radius = 8;
 let radians123 = 0.0007;
 let numberofitems = 400;
@@ -72,8 +83,8 @@ let particles
 function init() {
     particles = []
     for (let i = 0; i < numberofitems; i++) {
-      const canvasWidth = canvas.width + 900
-      const canvasHeight = canvas.height + 900
+      const canvasWidth = canvas.width + 1900
+      const canvasHeight = canvas.height + 1900
       let x = Math.random() * canvasWidth - canvasWidth / 2 
       let y = Math.random() * canvasHeight - canvasHeight / 2
       let radius1 = radius * Math.random();

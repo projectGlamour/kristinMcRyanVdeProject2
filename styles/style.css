@@ -461,11 +461,8 @@ nav.product {
   width: 100%;
   margin: 0;
   position: relative;
-  height: 920px;
+  height: 950px;
   z-index: 990;
-  border: solid black 1px;
-  border-left: 0;
-  border-right: 0;
 }
 
 .homePageTitleContainer {
@@ -736,6 +733,68 @@ i {
   text-align: center;
 }
 
+.productNavButton {
+  display: none;
+}
+
+@media only screen and (max-width: 900px) {
+  nav.product ul {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  nav.product ul li {
+    margin-bottom: 20px;
+  }
+
+  .theme-toggle {
+    display: none;
+  }
+
+  .sideMenu {
+    display: none;
+  }
+
+  Canvas {
+    width: 100%;
+    height: 500px;
+  }
+
+  .aboutParaContent {
+    width: 100%;
+  }
+
+  .aboutproductimg {
+    width: 100%;
+    min-height: 920px;
+  }
+
+  .aboutIntroduction {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .wrapperMain {
+    height: 500px;
+  }
+
+  html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+}
+@media only screen and (min-width: 901px) {
+  Canvas {
+    width: 100%;
+    height: 960px;
+  }
+}
 .wrapperProduct {
   max-width: 1280px;
   width: 80%;

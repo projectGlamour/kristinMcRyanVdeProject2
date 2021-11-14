@@ -14,26 +14,29 @@
 <body>
   <header>
       <nav class="home" id = "homeNav">
+        <!--Start of Custom Radio Buttons HTML--> 
         <div class="theme-toggle">
-          <label class="custom-radio-button">
+          <label class="custom-radio-button" alt="Halloween Theme">
             <input id="first" name="toggle-state" type="radio" />
             <span class="checkmark"></span>
           </label>
       
-          <label class="custom-radio-button">
+          <label class="custom-radio-button" alt="Christmas Theme">
             <input id="second" name="toggle-state" type="radio" />
             <span class="checkmark"></span>
           </label>
         
-          <label class="custom-radio-button">
+          <label class="custom-radio-button" alt="Return to Default Theme">
             <input id="third" name="toggle-state" type="radio" checked="checked"/>
             <span class="checkmark"></span>
           </label>
+
+          <!--End of Custom Radio Buttons HTML--> 
         </div>
         <ul>
           <li><a href="">About</a></li>
           <li><a href="index.html">Home</a></li>
-          <li><a href="product.html">Products</a></li>
+          <li class="productNavButton"><a  href="product.html">Products</a></li>
           <li><a href="">Blog</a></li>
         </ul>
       </nav>
@@ -56,7 +59,6 @@
         </div>
       </div>
       <section class = "aboutIntroduction" id = "aboutIntroduction">
-        <div class = "wrapperMain">
           <div class = "aboutParaContent">
             <h2>About Imperial Glamour</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt blanditiis perspiciatis, commodi ea ullam nobis, a, adipisci enim optio obcaecati deleniti totam modi minima aut exercitationem unde alias aliquid nihil! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem inventore quo ducimus asperiores aliquam similique cum quaerat veniam, obcaecati, nihil ratione laudantium sed quam aliquid fugit facilis. Aliquam, vero suscipit.</p>
@@ -70,18 +72,19 @@
           </div>
 
           <div class="aboutproductimg">
-            <img src="https://via.placeholder.com/300.png/09f/fff" id = "roundimage">
+            <img src="https://via.placeholder.com/300.png/09f/fff" id = "roundimage" alt="Round Picture of a woman putting on lipstick">
           </div>
-          <div class = "scrollupto" onclick="pageScroll();"><i class="fas fa-angle-up"></i></div> 
-        </div>
+          <div class = "scrollupto" onclick="pageScroll();" alt="Button to Scroll Up Automatically"><i class="fas fa-angle-up"></i></div> 
       </section>
     <main>
+      <!--Footer Begins-->
     <footer>
-      <div class = "credits">
+      <div class = "credits" alt="Footer Credits">
         <p class = "creditsP">Copyright &copy; Juno College of Technology</p>  
       </div>        
     </footer>
-  <!-- attaching JSpoop script file -->
+    <!--Footer Ends-->
+  <!-- attaching JS script files Begin -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="script.js"></script>
   <script src="canvas.js"></script>
