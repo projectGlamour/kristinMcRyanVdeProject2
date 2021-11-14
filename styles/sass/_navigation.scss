@@ -40,7 +40,7 @@ nav.product {
   display: flex;
   justify-content: flex-end;
   background-color: rgb(7, 7, 7);
-  margin-top: 1%;
+  
 }
 
 //poop
@@ -54,6 +54,10 @@ nav.product {
   width: 50%;
   margin: 0 0;
   align-content: center;
+}
+
+.product ul{
+  padding-top: 1rem;
 }
 
 
@@ -103,9 +107,7 @@ nav.product {
 @media only screen and (max-width: 625px){
   nav.product ul {
     flex-wrap: wrap;
-    margin-top: 20px;
     li {
-      
       margin-bottom: 20px;
     }
   }

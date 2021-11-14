@@ -364,7 +364,6 @@ nav.product {
       -ms-flex-pack: end;
           justify-content: flex-end;
   background-color: #070707;
-  margin-top: 1%;
 }
 
 .home ul,
@@ -385,6 +384,10 @@ nav.product {
   margin: 0 0;
   -ms-flex-line-pack: center;
       align-content: center;
+}
+
+.product ul {
+  padding-top: 1rem;
 }
 
 .home li,
@@ -440,7 +443,6 @@ nav.product {
   nav.product ul {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    margin-top: 20px;
   }
   nav.product ul li {
     margin-bottom: 20px;
@@ -958,30 +960,77 @@ div.detail button.show:focus {
 }
 
 .opened {
-  -webkit-transform: scale(2);
-          transform: scale(2);
+  -webkit-transform: scale(1.9);
+          transform: scale(1.9);
   border: 5px solid gold;
+  -webkit-box-shadow: 0px 0px 10px 1.5px gold;
+  box-shadow: 0px 0px 10px 1.5px gold;
 }
 
 .opened:hover {
   opacity: 1;
-  -webkit-transform: scale(2);
-          transform: scale(2);
+  -webkit-transform: scale(1.9);
+          transform: scale(1.9);
 }
 
-@media (max-width: 910px) {
+.scrollupto i {
+  border: 5px solid grey;
+  color: grey;
+}
+
+@media only screen and (max-width: 1060px) {
+  .opened {
+    -webkit-transform: scale(1.6);
+            transform: scale(1.6);
+  }
+}
+@media only screen and (max-width: 910px) {
   form button {
     grid-column-start: 2;
     margin-left: 0;
   }
+
+  .opened {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+
+  .open {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  .open p {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
-@media (max-width: 495px) {
+@media only screen and (max-width: 495px) {
   form {
     grid-template-columns: 1fr;
   }
-  form .select,
-form button {
+  form .select {
     grid-column-start: 1;
+  }
+
+  .opened {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+
+  div.detail {
+    width: 80%;
+  }
+  div.detail p {
+    margin: 0;
+  }
+  div.detail button.show {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 }
 .productFooter {
