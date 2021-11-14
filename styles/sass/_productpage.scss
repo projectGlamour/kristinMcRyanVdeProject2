@@ -45,6 +45,12 @@ ul img {
 
 .productMain {
   margin-bottom: 5%;
+  h2.title {
+    text-align: center;
+    color: white;
+    background-color: rgb(4, 4, 48);
+    margin: 0;
+  }
 }
 
 // form
@@ -59,6 +65,8 @@ form {
   border: lightgray solid 2px;
   border-left: 0;
   border-right: 0;
+  border-top: none;
+ 
 
   // adding style to the div around the selects
   .selection {

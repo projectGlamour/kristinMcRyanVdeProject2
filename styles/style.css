@@ -1239,6 +1239,12 @@ ul img {
 .productMain {
   margin-bottom: 5%;
 }
+.productMain h2.title {
+  text-align: center;
+  color: white;
+  background-color: #040430;
+  margin: 0;
+}
 
 form {
   display: grid;
@@ -1251,6 +1257,7 @@ form {
   border: lightgray solid 2px;
   border-left: 0;
   border-right: 0;
+  border-top: none;
 }
 form .selection {
   position: relative;
