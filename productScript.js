@@ -1,5 +1,5 @@
 const receivedValue = localStorage.getItem("ProductValueSentFromHome");
-console.log(`This is the value from home page ${receivedValue}`)
+
 // adding product category from home page to header
 document.getElementById('productTitleContainer').innerHTML = 
 `<h2>Imperial Glamour Products ~ ${receivedValue}`;
@@ -13,23 +13,18 @@ function pageScroll() {
 const app = {};
 
 
-// variable list - namespace - starts
+// variable list 
 app.apiUrl = "https://makeup-api.herokuapp.com/api/v1/products.json";
-let productCategoryOption = "";
-let count = "0";
-app.brandSelected = ""; // variable for the user's brand selection
-app.priceLessThan = 1000; // variable for user's price selection
-app.priceGreaterThan = 0; // variable for user's price selection
-// app.productType = receivedValue;
-app.productName = "";
+
+
+// start of functions 
 
 app.changeToTitle = (value) => {
   // change value to string to put in h2 span
   let text = value.slice(0, 1).toUpperCase() + value.slice(1);
-  console.log(`this is text in changeToTitle ${text}`)
+ 
   if (text === "Lip_liner"){
     newText = text.slice(0, 3) + " " + text.slice(4);
-    console.log(`this is the newtext ${newText}`)
     return newText
   }
   return text;
@@ -40,7 +35,6 @@ app.changeToValue = (title) => {
   let text = title.toLowerCase();
   if (text === "lipliner"){
     newText = text.slice(0, 3) + "_" + text.slice(3);
-    console.log(`this is the newtext ${newText}`)
     return newText
   }
   return text; 
@@ -50,7 +44,6 @@ app.changeToValue = (title) => {
 app.setInitialProductTypeOption = (productName) => {
   // change to value
   const value = app.changeToValue(productName);
-  console.log(`This is the converted value of the product sent from home page ${value}`)
 
   // change matching option to selected
   document.getElementById(value).selected = true; 
@@ -80,8 +73,7 @@ app.generateProductCategories = (result) => {
     
   // go through product array that equals value of result to assign options for product category
   const chosenCategory = productCategoryArrays[result];
-  console.log(`this is the result sent to app.generateProductCategories ${result}`)
-  console.log(`This is the category chosen inside app.generateProductCategories ${chosenCategory}`);
+
   // get product category select
   const productCategorySelect = document.getElementById("category");
 
@@ -147,7 +139,6 @@ app.listenForSelectChanges = () => {
     element.addEventListener("change", (event) => {
      
       const result = event.target.classList;
-      console.log(`assigning option event listeners to ${result}`);
       
       // get values of selected options in form
       const typeOptionSelected = document.querySelector("#productType option:checked").value;
@@ -158,7 +149,6 @@ app.listenForSelectChanges = () => {
       if (typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected == 0 && priceOptionSelected == 0){
         // user selected a new product type
         // call API for new product type
-        console.log(`includes productSelect`)
         url.search = new URLSearchParams({
           product_type: typeOptionSelected
         })
@@ -183,14 +173,8 @@ app.listenForSelectChanges = () => {
 
       }else {
         // product type selected with other filters
-        console.log(`selected filter other than product`)
-
-        // let params = new URLSearchParams(url.search);
-        console.log(typeOptionSelected, brandOptionSelected, categoryOptionSelected, priceOptionSelected)
-
         if(typeOptionSelected != 0 && brandOptionSelected != 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
           // has product type, brand, category and price selected
-          console.log("has brand, category and price selected")
           if (priceOptionSelected === "leastExpensive"){
             url.search = new URLSearchParams({
               product_type: typeOptionSelected,
@@ -210,7 +194,6 @@ app.listenForSelectChanges = () => {
           };
         }else if(typeOptionSelected != 0 && brandOptionSelected != 0 && categoryOptionSelected != 0 && priceOptionSelected == 0){
           // has type, brand and category selected, no price
-          console.log("has brand and category selected, no price")
           url.search = new URLSearchParams({
               product_type: typeOptionSelected,
               brand: brandOptionSelected,
@@ -218,14 +201,12 @@ app.listenForSelectChanges = () => {
             })
         }else if(typeOptionSelected != 0 && brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected == 0){
           // has type, brand selected, no category or price
-          console.log("has brand selected, no category or price")
           url.search = new URLSearchParams({
               product_type: typeOptionSelected,
               brand: brandOptionSelected,
             })
         }else if(typeOptionSelected != 0 && brandOptionSelected != 0 && categoryOptionSelected == 0 && priceOptionSelected != 0){
           // has type, brand and price selected but no category
-          console.log("has brand and price selected but no category")
           if (priceOptionSelected === "leastExpensive"){
             url.search = new URLSearchParams({
               product_type: typeOptionSelected,
@@ -243,7 +224,6 @@ app.listenForSelectChanges = () => {
           };
         }else if(typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
           // has type, category and price selected but no brand
-          console.log("has category and price selected but no brand")
           if (priceOptionSelected === "leastExpensive"){
             url.search = new URLSearchParams({
               product_type: typeOptionSelected,
@@ -261,14 +241,12 @@ app.listenForSelectChanges = () => {
           }
         }else if(typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected == 0){
           // has type, category, no brand or price
-          console.log("has category, no brand or price")
           url.search = new URLSearchParams({
               product_type: typeOptionSelected,
               product_category: categoryOptionSelected,
             })
         }else if(typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
           // has type, price, no brand or category
-          console.log("has price, no brand or category")
           if (priceOptionSelected === "leastExpensive"){
             url.search = new URLSearchParams({
               product_type: typeOptionSelected,
@@ -291,9 +269,7 @@ app.listenForSelectChanges = () => {
         const nameCapitalized = app.changeToTitle(brandOptionSelected)
         document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
         }
-
-        console.log(url)
-        
+        // call API
         app.apiCall(url);
       }
     })
