@@ -102,7 +102,16 @@ app.apiCall = (url) => {
       // call function to display images
       app.displayImages(jsonResponse);
     }else {
-      alert('No results');
+      // get alert div
+      const alertDiv = document.querySelector(".alert");
+      const alertButton = document.querySelector(".closeButton");
+
+      alertDiv.classList.toggle("showAlert");
+
+      // add event listener to close alert
+      alertButton.addEventListener("click", () => {
+        alertDiv.classList.remove("showAlert");
+      });
     }
   })
 } // end of app.apiCall
