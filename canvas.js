@@ -59,6 +59,7 @@ const mouse = {
   y: innerHeight / 2
 }
 
+//Boiler Plate Code Provide By Chris Courses
 class Particle {
   constructor(x, y, radius1, color) {
     this.x = x
@@ -115,6 +116,7 @@ function animate() {
     c.restore()
   radians += radians123;
 }
+//Boiler Plate Code Provide By Chris Courses
 
 init()
 animate()
