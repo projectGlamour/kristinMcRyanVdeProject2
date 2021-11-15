@@ -1,16 +1,20 @@
-const receivedValue = localStorage.getItem("ProductValueSentFromHome");
-
-// adding product category from home page to header
-document.getElementById('productTitleContainer').innerHTML = 
-`<h2>Imperial Glamour Products ~ ${receivedValue}`;
-
-
 function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // namespacing starts
 const app = {};
+
+app.getReceivedType = () => {
+  app.receivedValue = localStorage.getItem("ProductValueSentFromHome");
+  console.log(app.receivedValue)
+  if (app.receivedValue === null){
+    app.receivedValue = "lipstick";
+  }
+  // adding product category from home page to header
+  document.getElementById('productTitleContainer').innerHTML = 
+  `<h2>Imperial Glamour Products ~ ${app.receivedValue}`;
+}
 
 
 // variable list 
@@ -133,7 +137,7 @@ app.listenForSelectChanges = () => {
       const brandOptionSelected = document.querySelector("#brand option:checked").value;
       const categoryOptionSelected = document.querySelector("#category option:checked").value;
       const priceOptionSelected = document.querySelector("#price option:checked").value;
-      
+      console.log(priceOptionSelected)
       
       const result = event.target.classList;
         
@@ -146,6 +150,10 @@ app.listenForSelectChanges = () => {
         if (typeOptionSelected != 0){
           app.generateProductCategories(typeOptionSelected);
         }
+        // change product in header to match selection
+        const nameCapitalized = app.changeToTitle(typeOptionSelected)
+        document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ ${nameCapitalized}`;
+
       }
    
       if (typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected == 0 && priceOptionSelected == 0){
@@ -171,7 +179,7 @@ app.listenForSelectChanges = () => {
 
         // change header
         const nameCapitalized = app.changeToTitle(brandOptionSelected)
-        document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products ~ All</h2>`;
+        document.getElementById('productTitleContainer').innerHTML = `<h2>Imperial Glamour Products</h2>`;
 
       }else {
         // product type selected with other filters
@@ -247,6 +255,21 @@ app.listenForSelectChanges = () => {
               product_type: typeOptionSelected,
               product_category: categoryOptionSelected,
             })
+        }else if(typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected == 0 && priceOptionSelected != 0){
+          // has type, price, no brand or category
+          if (priceOptionSelected === "leastExpensive"){
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              price_greater_than: 0,
+              price_less_than: 25
+            })
+          }else{
+            url.search = new URLSearchParams({
+              product_type: typeOptionSelected,
+              price_greater_than: 25,
+              price_less_than: 1000
+            })
+          }
         }else if(typeOptionSelected != 0 && brandOptionSelected == 0 && categoryOptionSelected != 0 && priceOptionSelected != 0){
           // has type, price, no brand or category
           if (priceOptionSelected === "leastExpensive"){
@@ -338,29 +361,38 @@ app.displayImages = (arrayData) => {
   })
 }// end of display images
 
+app.changeScreenMode = () => {
+  // options for user to change color scheme
+  const darkModeOnBttn = document.querySelector("#first");
+  const darkModeOffBttn = document.querySelector("#second");
+  const normalizeBttn = document.querySelector("#third");
+  let htmlElement = document.documentElement;
+  
+  darkModeOnBttn.addEventListener("click", function () {
+    htmlElement.setAttribute("data-theme", "dark");
+  });
+  
+  darkModeOffBttn.addEventListener("click", function () {
+    htmlElement.setAttribute("data-theme", "christmas");
+  });
+  
+  normalizeBttn.addEventListener("click", function () {
+    htmlElement.setAttribute("data-theme", "light");
+  });
+}
+
+
 app.init = () => {
+
+  app.changeScreenMode();
   // change product category to match received value from home page
-  app.setInitialProductTypeOption(receivedValue);
+  app.getReceivedType();
+  app.setInitialProductTypeOption(app.receivedValue);
 
   // listen for user changes to selects
   app.listenForSelectChanges();
-  
 }
-const darkModeOnBttn = document.querySelector("#first");
-const darkModeOffBttn = document.querySelector("#second");
-const normalizeBttn = document.querySelector("#third");
-let htmlElement = document.documentElement;
 
-darkModeOnBttn.addEventListener("click", function () {
-  htmlElement.setAttribute("data-theme", "dark");
-});
 
-darkModeOffBttn.addEventListener("click", function () {
-  htmlElement.setAttribute("data-theme", "christmas");
-});
-
-normalizeBttn.addEventListener("click", function () {
-  htmlElement.setAttribute("data-theme", "light");
-});
 // call init
 app.init();
