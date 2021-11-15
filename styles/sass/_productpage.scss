@@ -50,6 +50,7 @@ ul img {
     color: white;
     background-color: rgb(4, 4, 48);
     margin: 0;
+    padding-bottom: 1rem;
   }
 }
 
@@ -114,6 +115,49 @@ form {
     }
   }
 }
+
+// alert messge
+.alert {
+  display: none;
+  padding: 20px;
+  background-color: lightskyblue;
+  color: black;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.closeButton {
+  margin-left: 15px;
+  color: gold;
+  background-color: lightskyblue;
+  border: none;
+  float: right;
+  font-size: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  span{
+    font-size: 30px;
+    font-weight: bold;
+   
+
+  }
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: gold;
+  span{
+    color: black;
+  }
+}
+
+.showAlert{
+  display: block;
+}
+
 
 // image gallery
 .imageGallery {

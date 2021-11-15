@@ -1244,6 +1244,7 @@ ul img {
   color: white;
   background-color: #040430;
   margin: 0;
+  padding-bottom: 1rem;
 }
 
 form {
@@ -1300,6 +1301,47 @@ form .selection select {
 }
 form .selection option {
   text-align: left;
+}
+
+.alert {
+  display: none;
+  padding: 20px;
+  background-color: lightskyblue;
+  color: black;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.closeButton {
+  margin-left: 15px;
+  color: gold;
+  background-color: lightskyblue;
+  border: none;
+  float: right;
+  font-size: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.closeButton span {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  color: gold;
+}
+.closeButton:hover span,
+.closeButton:focus span {
+  color: black;
+}
+
+.showAlert {
+  display: block;
 }
 
 .imageGallery ul.images {
