@@ -273,29 +273,49 @@ html {
 /*Setup CSS - Normalize Ends*/
 /*Style Guide Content Measurements Begin */
 html {
-  --color-primary: blue;
-  --color-primary2: #d8fbec;
-  --color-secondary: white;
-  --color-secondary2: white;
-  --color-black: black;
-  --color-white: #fafafa;
-  --color-font: black;
-  --color-icons: rgb(76, 238, 167);
-  --color-h1: white;
+  --color-primaryBlueBlackRed: "rgb(5, 5, 49)";
+  --color-primary2White: white;
+  --color-h1: transparent;
   --color-themeChanger: white;
+  --color-white: white;
+  --color-font: black;
+  --introductionColor: #ffe4e0;
+  --color-black: black;
+  --color-Nav: #171717;
+  --color-Nav2: rgba(0, 0, 0, 1);
+  --color-Nav3: rgba(0, 0, 0, 0);
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
+  --color-NavBLack: black;
+  --color-Blue2Grey2White: royalblue;
 }
 
 html[data-theme=dark] {
-  --color-primary: #2c2c2c;
+  --color-primaryBlueBlackRed: #2c2c2c;
   --color-primary2: rgb(90, 90, 90);
   --color-secondary: rgb(90, 90, 90);
   --color-secondary2: #2c2c2c;
   --color-black: black;
-  --color-white: #fafafa;
   --color-font: white;
-  --color-icons: white;
-  --color-h1: black;
+  --color-h1: white;
+  --introductionColor: rgb(90, 90, 90);
   --color-themeChanger: black;
+  --color-Nav: #171717;
+  --color-NavBLack: black;
+  --color-Nav2: rgba(0, 0, 0, 1);
+  --color-Nav3: rgba(0, 0, 0, 0);
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
+  --color-Blue2Grey2White: grey;
+}
+
+html[data-theme=christmas] {
+  --color-Nav: rgb(75, 6, 6);
+  --color-Nav2: rgba(75, 6, 6, 1);
+  --color-Nav3: rgba(75, 6, 6, 0);
+  --color-NavBLack: black;
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
 }
 
 html,
@@ -311,11 +331,14 @@ h1 {
   text-align: center;
   background-image: url("../assets/gifs/gif2.gif");
   background-size: cover;
-  color: transparent;
+  color: var(--color-h1);
   -moz-background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
+  stroke: black;
+  stroke-width: 2px;
 }
 
 p {
@@ -358,11 +381,11 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: #171717;
+  background-color: var(--color-Nav);
   color: white;
   height: 60px;
   padding: 0 0;
-  background-image: linear-gradient(to right, black, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 80%, black), linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(to bottom, #080808, #202020);
+  background-image: linear-gradient(to right, var(--color-Nav2), var(--color-Nav3) 20%, var(--color-Nav3) 80%, var(--color-Nav2)), linear-gradient(45deg, var(--color-NavBLack) 25%, transparent 25%, transparent 75%, var(--color-NavBLack) 75%, var(--color-NavBLack)), linear-gradient(45deg, var(--color-NavBLack) 25%, transparent 25%, transparent 75%, var(--color-NavBLack) 75%, var(--color-NavBLack)), linear-gradient(to bottom, var(--color-Nav4), var(--color-Nav5));
   background-size: 100% 100%, 10px 10px, 10px 10px, 10px 5px;
   background-position: 0px 0px, 0px 0px, 5px 5px, 0px 0px;
   border-bottom: solid black 2px;
@@ -458,6 +481,108 @@ nav.product {
     margin-bottom: 20px;
   }
 }
+/*Style Guide Content Measurements Begin */
+html {
+  --color-primaryBlueBlackRed: "rgb(5, 5, 49)";
+  --color-primary2White: white;
+  --color-h1: transparent;
+  --color-themeChanger: white;
+  --color-white: white;
+  --color-font: black;
+  --introductionColor: #ffe4e0;
+  --color-black: black;
+  --color-Nav: #171717;
+  --color-Nav2: rgba(0, 0, 0, 1);
+  --color-Nav3: rgba(0, 0, 0, 0);
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
+  --color-NavBLack: black;
+  --color-Blue2Grey2White: royalblue;
+}
+
+html[data-theme=dark] {
+  --color-primaryBlueBlackRed: #2c2c2c;
+  --color-primary2: rgb(90, 90, 90);
+  --color-secondary: rgb(90, 90, 90);
+  --color-secondary2: #2c2c2c;
+  --color-black: black;
+  --color-font: white;
+  --color-h1: white;
+  --introductionColor: rgb(90, 90, 90);
+  --color-themeChanger: black;
+  --color-Nav: #171717;
+  --color-NavBLack: black;
+  --color-Nav2: rgba(0, 0, 0, 1);
+  --color-Nav3: rgba(0, 0, 0, 0);
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
+  --color-Blue2Grey2White: grey;
+}
+
+html[data-theme=christmas] {
+  --color-Nav: rgb(75, 6, 6);
+  --color-Nav2: rgba(75, 6, 6, 1);
+  --color-Nav3: rgba(75, 6, 6, 0);
+  --color-NavBLack: black;
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  font-size: 20px;
+}
+
+h1 {
+  font-size: clamp(5rem, 4.5558rem + 2.4675vw, 6.9rem);
+  text-align: center;
+  background-image: url("../assets/gifs/gif2.gif");
+  background-size: cover;
+  color: var(--color-h1);
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+p {
+  font-family: "Lato", sans-serif;
+  letter-spacing: 1px;
+  line-height: 29px;
+  font-size: clamp(0.8rem, 0.5558rem + 0.4675vw, 1rem);
+}
+
+footer {
+  width: 100%;
+}
+
+.creditsP {
+  color: white;
+  margin: 0;
+}
+
+.credits {
+  background-color: #2c2c2c;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .wrapperMain {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -502,12 +627,17 @@ nav.product {
   font-size: clamp(2.5rem, 2.5558rem + 2.4675vw, 4.5rem);
   text-align: center;
   font-family: "Lobster Two", cursive;
-  color: white;
+  color: var(--color-white);
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
   -webkit-animation: slidein 6s 1;
           animation: slidein 6s 1;
   letter-spacing: 5px;
+}
+
+.wrapperOpacityAnime,
+.wrapperOpacityAnime2 {
+  max-width: 100%;
 }
 
 @-webkit-keyframes slidein {
@@ -724,13 +854,16 @@ canvas {
 }
 
 .aboutIntroduction {
-  background-color: #ffe4e0;
+  background-color: var(--introductionColor);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 100%;
+}
+.aboutIntroduction p {
+  color: var(--color-font);
 }
 
 @-webkit-keyframes slideinLeft {
@@ -859,10 +992,9 @@ canvas {
 .aboutParaContent h3 {
   font-size: 28px;
   text-transform: uppercase;
-  color: black;
   letter-spacing: 1px;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: var(--color-black);
 }
 
 .aboutParaImgGallery {
@@ -919,7 +1051,7 @@ canvas {
 
 .aboutproductimg {
   width: 50%;
-  background-color: royalblue;
+  background-color: var(--color-Blue2Grey2White);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

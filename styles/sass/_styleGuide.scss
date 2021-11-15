@@ -18,28 +18,48 @@ $fontBodyType: Roboto;
   text-transform: uppercase;
 }
 html {
-  --color-primary: blue;
-  --color-primary2: #d8fbec;
-  --color-secondary: white;
-  --color-secondary2: white;
-  --color-black: black;
-  --color-white: #fafafa;
-  --color-font: black;
-  --color-icons: rgb(76, 238, 167);
-  --color-h1: white;
+  --color-primaryBlueBlackRed: "rgb(5, 5, 49)";
+  --color-primary2White: white;
+  --color-h1: transparent;
   --color-themeChanger: white;
+  --color-white: white;
+  --color-font: black;
+  --introductionColor: #ffe4e0;
+  --color-black: black;
+  --color-Nav: #171717;
+  --color-Nav2: rgba(0, 0, 0, 1);
+  --color-Nav3: rgba(0, 0, 0, 0);
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
+  --color-NavBLack: black;
+  --color-Blue2Grey2White: royalblue;
 }
 html[data-theme="dark"] {
-  --color-primary: #2c2c2c;
+  --color-primaryBlueBlackRed: #2c2c2c;
   --color-primary2: rgb(90, 90, 90);
   --color-secondary: rgb(90, 90, 90);
   --color-secondary2: #2c2c2c;
   --color-black: black;
-  --color-white: #fafafa;
   --color-font: white;
-  --color-icons: white;
-  --color-h1: black;
+  --color-h1: white;
+  --introductionColor: rgb(90, 90, 90);
   --color-themeChanger: black;
+  --color-Nav: #171717;
+  --color-NavBLack: black;
+  --color-Nav2: rgba(0, 0, 0, 1);
+  --color-Nav3: rgba(0, 0, 0, 0);
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
+  --color-Blue2Grey2White: grey;
+}
+
+html[data-theme="christmas"] {
+  --color-Nav: rgb(75, 6, 6);
+  --color-Nav2: rgba(75, 6, 6, 1);
+  --color-Nav3: rgba(75, 6, 6, 0);
+  --color-NavBLack: black;
+  --color-Nav4: rgb(8, 8, 8);
+  --color-Nav5: rgb(32, 32, 32);
 }
 html,
 body {
@@ -54,11 +74,14 @@ h1 {
   text-align: center;
   background-image: url("../assets/gifs/gif2.gif");
   background-size: cover;
-  color: transparent;
+  color: var(--color-h1);
   -moz-background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
+  stroke: black;
+  stroke-width: 2px;
 }
 
 p {
