@@ -34,6 +34,7 @@ darkModeOnBttn.addEventListener("click", function () {
   radius = 9;
   numberofitems = 1600;
   radians123 = 0.001;
+  htmlElement.setAttribute("data-theme", "dark");
   init();
 });
 
@@ -41,6 +42,7 @@ darkModeOffBttn.addEventListener("click", function () {
   canvas.style.backgroundColor = "#800000";
   colors = ['white', 'darkgreen', 'lightgreen', 'green', 'gold'];
   radius = 14;
+  htmlElement.setAttribute("data-theme", "christmas");
   init();
 });
 
@@ -48,6 +50,7 @@ normalizeBttn.addEventListener("click", function () {
   canvas.style.backgroundColor = "rgb(5, 5, 49)";
   colors = ['lightblue', 'white', 'gold', 'rgb(106, 106, 226)'];
   radius = 8;
+  htmlElement.setAttribute("data-theme", "light");
   init();
 });
 

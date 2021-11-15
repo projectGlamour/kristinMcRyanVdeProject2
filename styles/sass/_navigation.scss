@@ -2,34 +2,34 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: #171717;
+  background-color: var(--color-Nav);
   color: white;
   height: 60px;
   padding: 0 0;
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 1),
-      rgba(0, 0, 0, 0) 20%,
-      rgba(0, 0, 0, 0) 80%,
-      rgba(0, 0, 0, 1)
+      var(--color-Nav2),
+      var(--color-Nav3) 20%,
+      var(--color-Nav3) 80%,
+      var(--color-Nav2)
     ),
     linear-gradient(
       45deg,
-      black 25%,
+      var(--color-NavBLack) 25%,
       transparent 25%,
       transparent 75%,
-      black 75%,
-      black
+      var(--color-NavBLack) 75%,
+      var(--color-NavBLack)
     ),
     linear-gradient(
       45deg,
-      black 25%,
+      var(--color-NavBLack) 25%,
       transparent 25%,
       transparent 75%,
-      black 75%,
-      black
+      var(--color-NavBLack) 75%,
+      var(--color-NavBLack)
     ),
-    linear-gradient(to bottom, rgb(8, 8, 8), rgb(32, 32, 32));
+    linear-gradient(to bottom, var(--color-Nav4), var(--color-Nav5));
   background-size: 100% 100%, 10px 10px, 10px 10px, 10px 5px;
   background-position: 0px 0px, 0px 0px, 5px 5px, 0px 0px;
   border-bottom: solid black 2px;
