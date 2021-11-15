@@ -39,7 +39,7 @@
 nav.product {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(7, 7, 7);
+  background-color: var(--color-Nav);
   border-bottom: solid gold 2px;
   padding: 0.5%;
 }
@@ -69,7 +69,7 @@ nav.product {
   align-content: center;
   border-radius: 25px;
   color: white;
-  background-color: #171717;
+  background-color: var(--color-Nav4);
   margin: 0 1%;
 }
 

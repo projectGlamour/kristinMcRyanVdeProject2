@@ -346,7 +346,21 @@ app.init = () => {
   app.listenForSelectChanges();
   
 }
+const darkModeOnBttn = document.querySelector("#first");
+const darkModeOffBttn = document.querySelector("#second");
+const normalizeBttn = document.querySelector("#third");
+let htmlElement = document.documentElement;
 
+darkModeOnBttn.addEventListener("click", function () {
+  htmlElement.setAttribute("data-theme", "dark");
+});
 
+darkModeOffBttn.addEventListener("click", function () {
+  htmlElement.setAttribute("data-theme", "christmas");
+});
+
+normalizeBttn.addEventListener("click", function () {
+  htmlElement.setAttribute("data-theme", "light");
+});
 // call init
 app.init();
