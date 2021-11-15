@@ -249,6 +249,10 @@ canvas {
     letter-spacing: 1px;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: var(--color-black);
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 .aboutParaImgGallery {
@@ -484,6 +488,9 @@ i {
   }
   .aboutParaContent {
     width: 100%;
+    h3 {
+      font-size: 24px;
+    }
   }
 }
 @media only screen and (min-width: 901px) {
@@ -548,4 +555,9 @@ i {
 }
 span:hover {
   color: white;
+}
+
+.wordContainer {
+  flex-wrap: nowrap;
+  display: flex;
 }

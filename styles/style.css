@@ -1030,6 +1030,16 @@ canvas {
   letter-spacing: 1px;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--color-black);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .aboutParaImgGallery {
@@ -1351,6 +1361,9 @@ i {
   .aboutParaContent {
     width: 100%;
   }
+  .aboutParaContent h3 {
+    font-size: 24px;
+  }
 }
 @media only screen and (min-width: 901px) {
   Canvas {
@@ -1415,6 +1428,14 @@ i {
 
 span:hover {
   color: white;
+}
+
+.wordContainer {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .wrapperProduct {
