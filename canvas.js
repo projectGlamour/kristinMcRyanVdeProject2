@@ -122,17 +122,54 @@ animate()
 const mouseTarget = document.getElementById("aboutIntroduction");
 
 mouseTarget.addEventListener('mouseenter', () => {
+  const mediaQuery = window.matchMedia('(max-width: 900px)')
+  
+  const mediaQuery2 = window.matchMedia('(min-width: 901px)')
+
+  if (mediaQuery.matches) {
+    const wrapperAnimation = document.getElementById("wrapperOpacityAnime");
+    const wrapperAnimation2 = document.getElementById("wrapperOpacityAnime2");
+    wrapperAnimation.style.animation = "none";
+    wrapperAnimation2.style.animation = "none";
+    wrapperAnimation.style.opacity = "1";
+    wrapperAnimation2.style.opacity = "1";
+  }
+  if (mediaQuery2.matches) {
   const wrapperAnimation = document.getElementById("wrapperOpacityAnime");
   const wrapperAnimation2 = document.getElementById("wrapperOpacityAnime2");
   wrapperAnimation.style.animation = "slideinLeft 6s 1, slidein 4s 1";
-  wrapperAnimation2.style.animation = "slideinRight 6s 1, slidein 4s 1";
+  wrapperAnimation2.style.animation = "slideinRight 6s 1, slidein 2s 1";
+  wrapperAnimation.style.opacity = "1";
+  wrapperAnimation2.style.opacity = "1";  
+
+ }
+ 
 })
 
 mouseTarget.addEventListener('mouseleave', () => {
+  const mediaQuery = window.matchMedia('(max-width: 900px)')
+  const mediaQuery2 = window.matchMedia('(min-width: 901px)')
+
+  if (mediaQuery.matches) {
+    const wrapperAnimation = document.getElementById("wrapperOpacityAnime");
+    const wrapperAnimation2 = document.getElementById("wrapperOpacityAnime2");
+    wrapperAnimation.style.animation = "none";
+    wrapperAnimation2.style.animation = "none";
+    wrapperAnimation.style.opacity = "1";
+    wrapperAnimation2.style.opacity = "1";
+  }
+
+  if (mediaQuery2.matches) {
   const wrapperAnimation = document.getElementById("wrapperOpacityAnime");
   const wrapperAnimation2 = document.getElementById("wrapperOpacityAnime2");
   wrapperAnimation.style.animation = "slideinLeftReverse 6s 1, slideinout 4s 1";
-  wrapperAnimation2.style.animation = "slideinRightReverse 6s 1, slideinout 4s 1";
+  wrapperAnimation2.style.animation = "slideinRightReverse 3s 1, slideinout 1.5s 1";
+  wrapperAnimation.style.opacity = "0";
+  wrapperAnimation2.style.opacity = "0";
+
+ }
+ 
+
 });
 
 function pageScroll() {

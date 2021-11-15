@@ -18,7 +18,7 @@ ul img {
 
 // header styling
 .productPage {
-  background-color: rgb(4, 4, 48);
+  background-color: var(--productPage);
   height: 35%;
   width: 100%;
   display: flex;
@@ -38,6 +38,8 @@ ul img {
     font-size: clamp(3rem, 1.4rem + 2.467vw, 4.5rem);
     text-shadow: black 3px 3px;
     text-transform: capitalize;
+    font-family: "Lobster Two", cursive;
+    letter-spacing: 2px;
   }
 }
 
@@ -45,12 +47,16 @@ ul img {
 
 .productMain {
   margin-bottom: 5%;
+  background-color: var(--ImageGallery);
   h2.title {
     text-align: center;
     color: white;
-    background-color: rgb(4, 4, 48);
+    background-color: var(--productPage);
     margin: 0;
     padding-bottom: 1rem;
+    text-transform: capitalize;
+    font-family: "Lobster Two", cursive;
+    letter-spacing: 2px;
   }
 }
 
@@ -61,13 +67,11 @@ form {
   grid-auto-rows: 35px;
   width: 100%;
   gap: 20px 2%;
-  background-color: rgb(36, 35, 35);
+  background-color: var(--productPageForm);
   padding: 2rem;
-  border: lightgray solid 2px;
+  border: gold solid 2px;
   border-left: 0;
   border-right: 0;
-  border-top: none;
- 
 
   // adding style to the div around the selects
   .selection {
@@ -138,29 +142,27 @@ form {
   line-height: 20px;
   cursor: pointer;
   transition: 0.3s;
-  span{
+  span {
     font-size: 30px;
     font-weight: bold;
-   
-
   }
 }
 
 .closeButton:hover,
 .closeButton:focus {
   color: gold;
-  span{
+  span {
     color: black;
   }
 }
 
-.showAlert{
+.showAlert {
   display: block;
 }
 
-
 // image gallery
 .imageGallery {
+  background-color: var(--ImageGallery);
   ul.images {
     margin: 30px auto;
     list-style: none;
@@ -177,6 +179,7 @@ form {
     text-align: center;
     width: 100%;
     text-transform: capitalize;
+    color: var(--color-font);
   }
 }
 

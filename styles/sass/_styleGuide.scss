@@ -24,6 +24,7 @@ html {
   --color-themeChanger: white;
   --color-white: white;
   --color-font: black;
+  --color-font2: black;
   --introductionColor: #ffe4e0;
   --color-black: black;
   --color-Nav: #171717;
@@ -32,7 +33,11 @@ html {
   --color-Nav4: rgb(8, 8, 8);
   --color-Nav5: rgb(32, 32, 32);
   --color-NavBLack: black;
-  --color-Blue2Grey2White: royalblue;
+  --color-Blue2Grey2White: rgb(93, 126, 224);
+  --roundImageColour: white;
+  --productPage: rgb(5, 5, 49);
+  --productPageForm: rgb(36, 35, 35);
+  --ImageGallery: white;
 }
 html[data-theme="dark"] {
   --color-primaryBlueBlackRed: #2c2c2c;
@@ -41,6 +46,7 @@ html[data-theme="dark"] {
   --color-secondary2: #2c2c2c;
   --color-black: black;
   --color-font: white;
+  --color-font2: white;
   --color-h1: white;
   --introductionColor: rgb(90, 90, 90);
   --color-themeChanger: black;
@@ -51,15 +57,26 @@ html[data-theme="dark"] {
   --color-Nav4: rgb(8, 8, 8);
   --color-Nav5: rgb(32, 32, 32);
   --color-Blue2Grey2White: grey;
+  --roundImageColour: white;
+  --productPage: #534f4f;
+  --productPageForm: rgb(36, 35, 35);
+  --ImageGallery: rgb(97, 97, 97);
 }
 
 html[data-theme="christmas"] {
-  --color-Nav: rgb(75, 6, 6);
-  --color-Nav2: rgba(75, 6, 6, 1);
-  --color-Nav3: rgba(75, 6, 6, 0);
-  --color-NavBLack: black;
-  --color-Nav4: rgb(8, 8, 8);
-  --color-Nav5: rgb(32, 32, 32);
+  --color-Nav: rgb(6, 75, 27);
+  --color-Nav2: rgba(17, 75, 6, 1);
+  --color-Nav3: rgba(17, 75, 6, 0);
+  --color-NavBLack: rgb(2, 88, 2);
+  --color-Nav4: rgb(17, 75, 6);
+  --color-Nav5: rgb(17, 75, 6);
+  --color-Blue2Grey2White: white;
+  --roundImageColour: black;
+  --productPage: darkred;
+  --productPageForm: rgb(1, 82, 1);
+  --ImageGallery: rgb(231, 150, 150);
+  --color-font: white;
+  --color-font2: black;
 }
 html,
 body {
