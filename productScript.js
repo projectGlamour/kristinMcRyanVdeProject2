@@ -7,7 +7,7 @@ const app = {};
 
 app.getReceivedType = () => {
   app.receivedValue = localStorage.getItem("ProductValueSentFromHome");
-  console.log(app.receivedValue)
+ 
   if (app.receivedValue === null){
     app.receivedValue = "lipstick";
   }

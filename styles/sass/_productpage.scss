@@ -229,7 +229,7 @@ div.detail {
     position: static;
     align-self: center;
     width: 6rem;
-    margin-top: 6rem;
+    margin-top: 1rem;
     padding: 0.3rem;
     background-color: rgb(254, 246, 231);
     color: darkblue;
@@ -291,10 +291,11 @@ div.detail {
 }
 
 .opened {
-  transform: scale(1.9);
+  transform: scale(1.7);
   border: 5px solid gold;
   -webkit-box-shadow: 0px 0px 10px 1.5px rgb(255, 215, 0);
   box-shadow: 0px 0px 10px 1.5px rgb(255, 215, 0);
+  margin-left: 10%;
 }
 
 .opened:hover {
@@ -311,6 +312,16 @@ div.detail {
 }
 
 // media queries
+@media only screen and (min-width: 1080px) {
+   // reduce form columns to 2
+  form {
+    grid-template-columns: 1fr 1fr;
+    .select {
+      grid-column-start: 1;
+    }
+  }
+}
+
 
 @media only screen and (min-width: 1061px) {
   .theme-toggle2 {
@@ -324,18 +335,17 @@ div.detail {
   .theme-toggle2 {
     display: none;
   }
+  .product ul{
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 910px) {
-  form {
-    button {
-      grid-column-start: 2;
-      margin-left: 0;
-    }
-  }
+  
 
   .opened {
-    transform: scale(1.2);
+    transform: scale(0.9);
+    margin: 0 auto;
   }
   .opened:hover {
     transform: scale(1);
@@ -344,6 +354,7 @@ div.detail {
   .open {
     flex-direction: column;
     justify-content: space-evenly;
+    height: 96%;
     p {
       margin-left: 0;
       margin-right: 0;
@@ -367,12 +378,17 @@ div.detail {
     }
   }
 
+  .open{
+    height: 95%;
+  }
   .opened {
-    transform: scale(0.8);
+  
+    display: none;
   }
   .opened:hover {
     transform: scale(0.8);
   }
+ 
 
   div.detail {
     width: 80%;
@@ -380,7 +396,7 @@ div.detail {
       margin: 0;
     }
     button.show {
-      margin-top: 2rem;
+      margin-top: 0.5rem;
       margin-bottom: 2rem;
     }
   }
