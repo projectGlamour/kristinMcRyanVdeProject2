@@ -1851,14 +1851,15 @@ div.detail button.show:focus {
     display: none;
   }
 }
-@media only screen and (max-width: 495px) {
+@media only screen and (max-width: 625px) {
   form {
     grid-template-columns: 1fr;
   }
   form .select {
     grid-column-start: 1;
   }
-
+}
+@media only screen and (max-width: 495px) {
   .open {
     height: 95%;
   }

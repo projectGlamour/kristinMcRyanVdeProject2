@@ -369,7 +369,8 @@ div.detail {
   }
 }
 
-@media only screen and (max-width: 495px) {
+
+@media only screen and (max-width: 625px) {
   // reduce form columns to 1
   form {
     grid-template-columns: 1fr;
@@ -377,6 +378,9 @@ div.detail {
       grid-column-start: 1;
     }
   }
+}
+
+@media only screen and (max-width: 495px) {
 
   .open{
     height: 95%;
