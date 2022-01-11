@@ -137,7 +137,6 @@ app.listenForSelectChanges = () => {
       const brandOptionSelected = document.querySelector("#brand option:checked").value;
       const categoryOptionSelected = document.querySelector("#category option:checked").value;
       const priceOptionSelected = document.querySelector("#price option:checked").value;
-      console.log(priceOptionSelected)
       
       const result = event.target.classList;
         

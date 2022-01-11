@@ -7,7 +7,6 @@ app.apiUrl = "http://makeup-api.herokuapp.com/api/v1/products.json";
 app.getProductType = () => {
   // get all product buttons
   const buttonList = document.querySelectorAll("button[id^=product");
-  console.log(buttonList);
   // loop through nodelist of buttons
   buttonList.forEach(buttonItem => {
     // add event listener to each button
@@ -30,22 +29,17 @@ function valueSent() {
 }
 
 
-//  ** NOT working yet
 app.loadProductPage = () => {
   // change the header to include the product type
   app.loadProductPageTitle();
 
 }
-//  ** NOT working yet
 app.loadProductPageTitle = () => {
   // get h2 on product page
   const spanElement = document.querySelector('span');
   // const h2Element = document.querySelector('h2');
-  console.log(spanElement);
   spanElement.textContent = app.productTypeSelected;
 }
-
-
 
 app.init = () => {
   // 

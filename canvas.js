@@ -1,3 +1,6 @@
+
+//Canvas Starting Variables
+
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
@@ -5,17 +8,6 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 canvas.style.backgroundColor = "rgb(5, 5, 49)";
 canvas.style.zIndex = "1";
-
-
-
-window.addEventListener('resize', canvasresize);
-
-canvasresize();
-function canvasresize(){
-  
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
 
 let radius = 8;
 let radians123 = 0.0007;
@@ -27,6 +19,17 @@ const normalizeBttn = document.querySelector("#third");
 let htmlElement = document.documentElement;
 
 let colors = ['lightblue', 'white', 'gold', 'rgb(106, 106, 226)'];
+//Event Listener For Canvas Resize on Window size Change
+window.addEventListener('resize', canvasresize);
+
+canvasresize();
+function canvasresize(){
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+//DarkMode Theme Changer Function
 
 darkModeOnBttn.addEventListener("click", function () {
   canvas.style.backgroundColor = "black";
@@ -38,6 +41,8 @@ darkModeOnBttn.addEventListener("click", function () {
   init();
 });
 
+//Christmas Theme Changer Function
+
 darkModeOffBttn.addEventListener("click", function () {
   canvas.style.backgroundColor = "#800000";
   colors = ['white', 'darkgreen', 'lightgreen', 'green', 'gold'];
@@ -45,6 +50,8 @@ darkModeOffBttn.addEventListener("click", function () {
   htmlElement.setAttribute("data-theme", "christmas");
   init();
 });
+
+//Default Theme Changer Function
 
 normalizeBttn.addEventListener("click", function () {
   canvas.style.backgroundColor = "rgb(5, 5, 49)";
@@ -58,6 +65,8 @@ const mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
 }
+
+//Class Constructor for Particle
 
 class Particle {
   constructor(x, y, radius1, color) {
@@ -81,6 +90,7 @@ class Particle {
   }
 }
 
+//Particle Class For Loop Begins 
 
 let particles
 function init() {
@@ -97,9 +107,9 @@ function init() {
   }
   
 }
+//Particle Class For Loop Ends
 
 let radians = 0
-
 
 function animate() {
   requestAnimationFrame(animate)
@@ -119,6 +129,7 @@ function animate() {
 init()
 animate()
 
+//Moving Function for About Page
 const mouseTarget = document.getElementById("aboutIntroduction");
 
 mouseTarget.addEventListener('mouseenter', () => {
@@ -146,6 +157,7 @@ mouseTarget.addEventListener('mouseenter', () => {
  
 })
 
+//About Page MouseLeave Function Media Quries
 mouseTarget.addEventListener('mouseleave', () => {
   const mediaQuery = window.matchMedia('(max-width: 900px)')
   const mediaQuery2 = window.matchMedia('(min-width: 901px)')
@@ -172,6 +184,7 @@ mouseTarget.addEventListener('mouseleave', () => {
 
 });
 
+//Page Scroll Function 
 function pageScroll() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
